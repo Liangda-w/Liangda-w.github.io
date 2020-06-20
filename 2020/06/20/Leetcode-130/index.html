@@ -27,8 +27,8 @@
 <meta property="og:site_name" content="Bright&#39;s Blog">
 <meta property="og:description" content="Description Given a 2D board containing &#39;X&#39; and &#39;O&#39; (the letter O), capture all regions surrounded by &#39;X&#39;.A region is captured by flipping all &#39;O&#39;s into &#39;X&#39;s in">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-06-20T09:28:54.000Z">
-<meta property="article:modified_time" content="2020-06-20T16:58:40.585Z">
+<meta property="article:published_time" content="2020-06-20T16:28:54.000Z">
+<meta property="article:modified_time" content="2020-06-20T17:43:35.528Z">
 <meta property="article:author" content="大达哒 Bright">
 <meta property="article:tag" content="Leetcode">
 <meta name="twitter:card" content="summary">
@@ -192,7 +192,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-06-20 11:28:54 / Modified: 18:58:40" itemprop="dateCreated datePublished" datetime="2020-06-20T11:28:54+02:00">2020-06-20</time>
+              <time title="Created: 2020-06-20 18:28:54 / Modified: 19:43:35" itemprop="dateCreated datePublished" datetime="2020-06-20T18:28:54+02:00">2020-06-20</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -268,6 +268,9 @@ X O X X</code></pre><blockquote>
 <p>Surrounded regions shouldn’t be on the border, which means that any <code>&#39;O&#39;</code> on the border of the board are not flipped to <code>&#39;X&#39;</code>. Any <code>&#39;O&#39;</code> that is not on the border and it is not connected to an <code>&#39;O&#39;</code> on the border will be flipped to <code>&#39;X&#39;</code>. Two cells are connected if they are adjacent cells connected horizontally or vertically.</p>
 </blockquote>
 <p>如 <code>&#39;X&#39;</code> 模块四周均被 <code>&#39;O&#39;</code> 包围，则将 <code>&#39;X&#39;</code> 换成 <code>&#39;O&#39;</code>。</p>
+ <a id="more"></a>
+
+
 <p><strong>特殊情况考虑：</strong></p>
 <ul>
 <li><p><code>char[][] board</code> 可以是空的， 所以要先验证是否长度为0，如果是，则终止此方法 <code>return;</code>，Testcase其实只有一个 <code>[]</code> 要特殊考虑，所以理论上第二个for循环不需要：</p>
@@ -461,10 +464,7 @@ for(int i=0; i&lt;a; i++){
     <a href="/2020/06/20/Translation/" rel="prev" title="CH / EN / DE 专业词汇对照表（长期更新）">
       <i class="fa fa-chevron-left"></i> CH / EN / DE 专业词汇对照表（长期更新）
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/06/20/MarkdownPad%202/" rel="next" title="MarkdownPad 2">
-      MarkdownPad 2 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
