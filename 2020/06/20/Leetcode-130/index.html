@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="题目描述 Given a 2D board containing &#39;X&#39; and &#39;O&#39; (the letter O), capture all regions surrounded by &#39;X&#39;. A region is captured by flipping all &#39;O&#39;s into &#39;X&#39;s in that">
+  <meta name="description" content="Description Given a 2D board containing &#39;X&#39; and &#39;O&#39; (the letter O), capture all regions surrounded by &#39;X&#39;.A region is captured by flipping all &#39;O&#39;s into &#39;X&#39;s in">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Leetcode">
-<meta property="og:url" content="http://yoursite.com/2020/06/20/Leetcode/index.html">
+<meta property="og:title" content="Leetcode 130： Surrounded Regions">
+<meta property="og:url" content="http://yoursite.com/2020/06/20/Leetcode-130/index.html">
 <meta property="og:site_name" content="Bright&#39;s Blog">
-<meta property="og:description" content="题目描述 Given a 2D board containing &#39;X&#39; and &#39;O&#39; (the letter O), capture all regions surrounded by &#39;X&#39;. A region is captured by flipping all &#39;O&#39;s into &#39;X&#39;s in that">
+<meta property="og:description" content="Description Given a 2D board containing &#39;X&#39; and &#39;O&#39; (the letter O), capture all regions surrounded by &#39;X&#39;.A region is captured by flipping all &#39;O&#39;s into &#39;X&#39;s in">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-06-20T09:28:54.000Z">
-<meta property="article:modified_time" content="2020-06-20T13:04:11.166Z">
+<meta property="article:modified_time" content="2020-06-20T16:58:40.585Z">
 <meta property="article:author" content="大达哒 Bright">
 <meta property="article:tag" content="Leetcode">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/06/20/Leetcode/">
+<link rel="canonical" href="http://yoursite.com/2020/06/20/Leetcode-130/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>Leetcode | Bright's Blog</title>
+  <title>Leetcode 130： Surrounded Regions | Bright's Blog</title>
   
 
 
@@ -168,7 +168,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/20/Leetcode/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/20/Leetcode-130/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -181,7 +181,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Leetcode
+          Leetcode 130： Surrounded Regions
         </h1>
 
         <div class="post-meta">
@@ -192,7 +192,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-06-20 11:28:54 / Modified: 15:04:11" itemprop="dateCreated datePublished" datetime="2020-06-20T11:28:54+02:00">2020-06-20</time>
+              <time title="Created: 2020-06-20 11:28:54 / Modified: 18:58:40" itemprop="dateCreated datePublished" datetime="2020-06-20T11:28:54+02:00">2020-06-20</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -220,8 +220,8 @@
       </span>
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/06/20/Leetcode/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/20/Leetcode/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/06/20/Leetcode-130/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/20/Leetcode-130/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -231,14 +231,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>195</span>
+              <span>4.6k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
+              <span>4 mins.</span>
             </span>
 
         </div>
@@ -250,11 +250,170 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a><strong>题目描述</strong></h2><blockquote>
-<p>Given a 2D board containing <code>&#39;X&#39;</code> and <code>&#39;O&#39;</code> <strong>(the letter O)</strong>, capture all regions surrounded by <code>&#39;X&#39;</code>.</p>
-<p>A region is captured by flipping all <code>&#39;O&#39;</code>s into <code>&#39;X&#39;</code>s in that surrounded region.<br>Example:</p>
+        <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a><strong>Description</strong></h2><blockquote>
+<p>Given a 2D board containing <code>&#39;X&#39;</code> and <code>&#39;O&#39;</code> <strong>(the letter O)</strong>, capture all regions surrounded by <code>&#39;X&#39;</code>.<br>A region is captured by flipping all <code>&#39;O&#39;</code>s into <code>&#39;X&#39;</code>s in that surrounded region.</p>
+<p><strong>Example:</strong></p>
 </blockquote>
+<pre><code>X X X X
+X O O X
+X X O X
+X O X X</code></pre><blockquote>
+<p>After running your function, the board should be:</p>
+</blockquote>
+<pre><code>X X X X
+X X X X
+X X X X
+X O X X</code></pre><blockquote>
+<p><strong>Explanations:</strong></p>
+<p>Surrounded regions shouldn’t be on the border, which means that any <code>&#39;O&#39;</code> on the border of the board are not flipped to <code>&#39;X&#39;</code>. Any <code>&#39;O&#39;</code> that is not on the border and it is not connected to an <code>&#39;O&#39;</code> on the border will be flipped to <code>&#39;X&#39;</code>. Two cells are connected if they are adjacent cells connected horizontally or vertically.</p>
+</blockquote>
+<p>如 <code>&#39;X&#39;</code> 模块四周均被 <code>&#39;O&#39;</code> 包围，则将 <code>&#39;X&#39;</code> 换成 <code>&#39;O&#39;</code>。</p>
+<p><strong>特殊情况考虑：</strong></p>
+<ul>
+<li><p><code>char[][] board</code> 可以是空的， 所以要先验证是否长度为0，如果是，则终止此方法 <code>return;</code>，Testcase其实只有一个 <code>[]</code> 要特殊考虑，所以理论上第二个for循环不需要：</p>
+<pre><code>int a = board.length; 
+if(a == 0) return;
 
+int b = board[0].length;
+for(int i=0; i&lt;a; i++){
+     if(board[i].length == 0 || board[i].length != b) return;
+}</code></pre></li>
+</ul>
+<h2 id="My-Solution-1"><a href="#My-Solution-1" class="headerlink" title="My Solution - 1"></a>My Solution - 1</h2><p><strong>思路：</strong>看到这题的第一反应是写一个递归函数 (EN: recursive / DE: Rekursion)，找到第一个 <code>&#39;O&#39;</code>，调用此递归函数：</p>
+<ul>
+<li>如此<code>&#39;O&#39;</code>在边界上，<code>&#39;Return false;&#39;</code></li>
+<li>如上下左右均为 <code>&#39;X&#39;</code>，<code>&#39;Return false;&#39;</code>，换成 <code>&#39;O&#39;</code>，</li>
+<li>如检测到了 <code>&#39;X&#39;</code>，则再次调用此递归函数，</li>
+</ul>
+<p>然而仔细一想：因为每次都会检查上下左右，那相邻的<code>&#39;O&#39;</code>会陷入死循环，<br>除非能记住是从哪个<code>&#39;O&#39;</code>被调用的。-&gt; 解决方法：加二个参数记住被调用的<code>&#39;O&#39;</code>的坐标。</p>
+<p>那么问题又来了：比如4个相邻的<code>&#39;O&#39;</code>呈正方形，那么同样会进入死循环，因为第四个<code>&#39;O&#39;</code>不认识第一个<code>&#39;O&#39;</code>。-&gt; 解决方法：加一个双重数组参数 <code>char[][] checked</code> 记住所有已经检测过的<code>&#39;O&#39;</code>的位置。</p>
+<p>理论上应该是可行的，<a href="https://leetcode.wang/leetcode-130-Surrounded-Regions.html">详情参见大佬总结</a>，但过于麻烦易超时，此方法弃用。</p>
+<h2 id="My-Solution-2-DFS"><a href="#My-Solution-2-DFS" class="headerlink" title="My Solution - 2 DFS"></a>My Solution - 2 DFS</h2><p><strong>思路：</strong>既然问题是如何记住从哪被调用的，那么只要把被调用的<code>&#39;O&#39;</code>换掉就可以了，因此换了一个思路：</p>
+<p>1） 找到临边界的<code>&#39;O&#39;</code>，先把它们变成其他任意的字母（我这里选了<code>&#39;A&#39;</code>）<br>2） 通过临边界的<code>&#39;O&#39;</code>找到所有与之相邻的<code>&#39;O&#39;</code>并把他们变成<code>&#39;A&#39;</code>，这里<code>change（...）</code>方法用了递归<br>3） 把剩余的<code>&#39;O&#39;</code>变成<code>&#39;X&#39;</code><br>4） 最后再把所有<code>&#39;A&#39;</code>变回<code>&#39;O&#39;</code></p>
+<p>翻评论区发现这个算法其实是有姓名的：<br><strong>Depth first search / Tiefensuche / 深度优先搜索</strong></p>
+<blockquote>
+<p>The algorithm starts at the root node (selecting some arbitrary node as the root node in the case of a graph) and explores as far as possible along each branch before backtracking. </p>
+</blockquote>
+<p>相反是：<strong>Breadth-first search （BFS） / Breitensuche / 宽度优先搜索算法。</strong></p>
+<blockquote>
+<p>It starts at the tree root (or some arbitrary node of a graph, sometimes referred to as a ‘search key’[1]), and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level. </p>
+</blockquote>
+<h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><pre><code>class Solution {
+    public void solve(char[][] board) {
+        int a = board.length; 
+        if(a == 0){
+            return;
+        }
+
+        int b = board[0].length;
+        if(b == 0){
+            return;
+        }
+
+        for(int i=0; i&lt;a;i++){ //left top to left down
+            if(board[i][0] == &apos;O&apos;){
+                board[i][0] = &apos;A&apos;;
+                change(board, i, 0, a, b);
+            }
+        }
+
+        for(int i=0; i&lt;a;i++){ //right top to right down
+            if(board[i][b-1] == &apos;O&apos;){
+                board[i][b-1] = &apos;A&apos;;
+                change(board, i, b-1, a, b);
+            }
+        }  
+
+        for(int j=0; j&lt;b;j++){ //up left to up right
+            if(board[0][j] == &apos;O&apos;){
+                board[0][j] = &apos;A&apos;;
+                change(board, 0, j, a, b);
+            }
+        }
+
+        for(int j=0; j&lt;b;j++){ //down left to down right
+            if(board[a-1][j] == &apos;O&apos;){
+                board[a-1][j] = &apos;A&apos;;
+                change(board, a-1, j, a, b);
+            }
+        }
+
+        for(int i=1; i&lt;a-1; i++){ //change all &apos;O&apos; left (means they are surround by &apos;X&apos;) to &apos;X&apos;
+            for(int j=1; j&lt;b-1; j++){
+                if(board[i][j] == &apos;O&apos;){
+                    board[i][j] = &apos;X&apos;;
+                }
+            }
+        }
+
+        for(int i=0; i&lt;a; i++){ //change all &apos;A&apos; to &apos;O&apos;
+            for(int j=0; j&lt;b; j++){
+                if(board[i][j] == &apos;A&apos;){
+                    board[i][j] = &apos;O&apos;;
+                }
+            }
+        }
+    }
+
+    public void change(char[][] board, int i, int j, int a, int b){
+        if(i-1&gt;=0 &amp;&amp; board[i-1][j] == &apos;O&apos;){//Up
+            board[i-1][j] = &apos;A&apos;;
+            change(board, i-1, j, a, b);
+        }
+
+        if(i+1&lt;a-1 &amp;&amp; board[i+1][j] == &apos;O&apos;){//down
+            board[i+1][j] = &apos;A&apos;;
+            change(board, i+1, j, a, b);
+        }
+
+        if(j+1&lt;b-1 &amp;&amp; board[i][j+1] == &apos;O&apos; ){//right
+            board[i][j+1] = &apos;A&apos;;
+            change(board, i, j+1, a, b);
+        }
+
+        if(j-1&gt;=0 &amp;&amp; board[i][j-1] == &apos;O&apos;){//left
+            board[i][j-1] = &apos;A&apos;;
+            change(board, i, j-1, a, b);
+        }
+    }
+}</code></pre><p><strong>测试结果：</strong>内存占用有点多…</p>
+<blockquote>
+<p>Runtime: 3 ms （beats 27%）<br>Memory Usage: 49.4 MB (beats 6%)</p>
+</blockquote>
+<h3 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h3><p>其实一开始是打算用C++做的，结果一看给的初始代码…被两个vector吓到了。</p>
+<pre><code>class Solution {
+    public:
+    void solve(vector&lt;vector&lt;char&gt;&gt;&amp; board) {
+
+    }
+};</code></pre><p>后来看了评论区大佬的代码发现并没有任何区别 <code>vector&lt;vector&lt;char&gt;&gt;&amp; board</code> = <code>char[][] board</code>，思路跟上面一样，而且跟我自己写的比简洁了太多，下面加了一些自己的注释（Java也可以如下简化）：</p>
+<blockquote>
+<pre><code>class Solution {
+    public:
+    void solve(vector&lt;vector&lt;char&gt;&gt;&amp; board) {
+        if(board.empty())return;
+        int row = board.size(),col = board[0].size();
+
+        for(int i=0;i&lt;col;i++)DFS(board,0,i,row,col),DFS(board,row-1,i,row,col);//first row and last row
+
+        for(int i=0;i&lt;row;i++)DFS(board,i,0,row,col),DFS(board,i,col-1,row,col); //first column and last column
+
+        for(int i=0;i&lt;row;i++)
+            for(int j=0;j&lt;col;j++)
+                if(board[i][j]==&apos;O&apos;)board[i][j]=&apos;X&apos;;
+                else if(board[i][j]==&apos;P&apos;)board[i][j]=&apos;O&apos;; //together
+    }
+
+    void DFS(vector&lt;vector&lt;char&gt;&gt;&amp; board,int r,int c,int rsize,int csize){
+        if(r&lt;0||c&lt;0||r==rsize||c==csize||board[r][c]!=&apos;O&apos;)return; //together
+        board[r][c] = &apos;P&apos;;
+        DFS(board,r+1,c,rsize,csize);
+        DFS(board,r,c+1,rsize,csize);
+        DFS(board,r-1,c,rsize,csize);
+        DFS(board,r,c-1,rsize,csize);
+    }
+};</code></pre></blockquote>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2>
     </div>
 
     
@@ -279,7 +438,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://yoursite.com/2020/06/20/Leetcode/" title="Leetcode">http://yoursite.com/2020/06/20/Leetcode/</a>
+    <a href="http://yoursite.com/2020/06/20/Leetcode-130/" title="Leetcode 130： Surrounded Regions">http://yoursite.com/2020/06/20/Leetcode-130/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -299,10 +458,13 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/06/20/MarkdownPad%202/" rel="prev" title="MarkdownPad 2">
-      <i class="fa fa-chevron-left"></i> MarkdownPad 2
+    <a href="/2020/06/20/Translation/" rel="prev" title="CH / EN / DE 专业词汇对照表（长期更新）">
+      <i class="fa fa-chevron-left"></i> CH / EN / DE 专业词汇对照表（长期更新）
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/20/MarkdownPad%202/" rel="next" title="MarkdownPad 2">
+      MarkdownPad 2 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -362,7 +524,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#My-Solution-1"><span class="nav-number">2.</span> <span class="nav-text">My Solution - 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#My-Solution-2-DFS"><span class="nav-number">3.</span> <span class="nav-text">My Solution - 2 DFS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java"><span class="nav-number">3.1.</span> <span class="nav-text">Java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C"><span class="nav-number">3.2.</span> <span class="nav-text">C++</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-number">4.</span> <span class="nav-text">Summary</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -378,7 +540,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -391,7 +553,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -435,12 +597,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">2k</span>
+    <span title="Symbols count total">6k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">1 mins.</span>
+    <span title="Reading time total">6 mins.</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
