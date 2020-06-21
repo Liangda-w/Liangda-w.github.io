@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="DescriptionDifficulty: Medium  Given a 2D board containing &#39;X&#39; and &#39;O&#39; (the letter O), capture all regions surrounded by &#39;X&#39;.A region is captured by flipping all &#39;O&#39;s i">
@@ -28,7 +28,7 @@
 <meta property="og:description" content="DescriptionDifficulty: Medium  Given a 2D board containing &#39;X&#39; and &#39;O&#39; (the letter O), capture all regions surrounded by &#39;X&#39;.A region is captured by flipping all &#39;O&#39;s i">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-06-20T16:28:54.000Z">
-<meta property="article:modified_time" content="2020-06-21T14:13:35.052Z">
+<meta property="article:modified_time" content="2020-06-21T14:42:41.574Z">
 <meta property="article:author" content="大达哒 Bright">
 <meta property="article:tag" content="Leetcode">
 <meta property="article:tag" content="BFS">
@@ -201,7 +201,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-21 16:13:35" itemprop="dateModified" datetime="2020-06-21T16:13:35+02:00">2020-06-21</time>
+                <time title="Modified: 2020-06-21 16:42:41" itemprop="dateModified" datetime="2020-06-21T16:42:41+02:00">2020-06-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -244,14 +244,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>825</span>
+              <span>9.3k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
+              <span>8 mins.</span>
             </span>
 
         </div>
@@ -284,14 +284,7 @@ X O X X</code></pre><p><strong>Explanations:</strong></p>
 <ul>
 <li><code>char[][] board</code> 可以是空的， 所以要先验证是否长度为0，如果是，则终止此方法 <code>return;</code>，Testcase其实只有一个 <code>[]</code> 要特殊考虑，所以理论上第二个for循环不需要：</li>
 </ul>
-<pre><code>int a = board.length; 
-if(a == 0) return;
-
-int b = board[0].length;
-for(int i=0; i<a; i++){
- if(board[i].length == 0 || board[i].length != b) return;
-}
-</code></pre>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int a = board.<span class="built_in">length</span>; </span><br><span class="line"><span class="keyword">if</span>(a = <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">int b = board[<span class="number">0</span>].<span class="built_in">length</span>;</span><br><span class="line"><span class="keyword">for</span>(int <span class="built_in">i</span>=<span class="number">0</span>; <span class="built_in">i</span>&lt;a; <span class="built_in">i</span>++)&#123;</span><br><span class="line">	<span class="keyword">if</span>(board[<span class="built_in">i</span>].<span class="built_in">length</span> == <span class="number">0</span> || board[<span class="built_in">i</span>].<span class="built_in">length</span> != b) <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <br/> 
 
@@ -317,120 +310,18 @@ for(int i=0; i<a; i++){
 <blockquote>
 <p>The algorithm starts at the root node (selecting some arbitrary node as the root node in the case of a graph) and explores as far as possible along each branch before backtracking. </p>
 </blockquote>
-<h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><pre><code>class Solution {
-    public void solve(char[][] board) {
-        int a = board.length; 
-        if(a == 0){
-            return;
-        }
+<h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="symbol">Solution</span> &#123;</span><br><span class="line"> <span class="keyword">public</span> <span class="built_in">void</span> solve(char[][] board) &#123;</span><br><span class="line">     <span class="built_in">int</span> a = board.length; </span><br><span class="line">     <span class="keyword">if</span>(a == <span class="number">0</span>)&#123;</span><br><span class="line">         <span class="keyword">return</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="built_in">int</span> b = board[<span class="number">0</span>].length;</span><br><span class="line">     <span class="keyword">if</span>(b == <span class="number">0</span>)&#123;</span><br><span class="line">         <span class="keyword">return</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>; i&lt;a;i++)&#123; <span class="comment">//left top to left down</span></span><br><span class="line">         <span class="keyword">if</span>(board[i][<span class="number">0</span>] == <span class="string">'O'</span>)&#123;</span><br><span class="line">             board[i][<span class="number">0</span>] = <span class="string">'A'</span>;</span><br><span class="line">             change(board, i, <span class="number">0</span>, a, b);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>; i&lt;a;i++)&#123; <span class="comment">//right top to right down</span></span><br><span class="line">         <span class="keyword">if</span>(board[i][b<span class="number">-1</span>] == <span class="string">'O'</span>)&#123;</span><br><span class="line">             board[i][b<span class="number">-1</span>] = <span class="string">'A'</span>;</span><br><span class="line">             change(board, i, b<span class="number">-1</span>, a, b);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;  </span><br><span class="line">     </span><br><span class="line">     <span class="keyword">for</span>(<span class="built_in">int</span> j=<span class="number">0</span>; j&lt;b;j++)&#123; <span class="comment">//up left to up right</span></span><br><span class="line">         <span class="keyword">if</span>(board[<span class="number">0</span>][j] == <span class="string">'O'</span>)&#123;</span><br><span class="line">             board[<span class="number">0</span>][j] = <span class="string">'A'</span>;</span><br><span class="line">             change(board, <span class="number">0</span>, j, a, b);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">for</span>(<span class="built_in">int</span> j=<span class="number">0</span>; j&lt;b;j++)&#123; <span class="comment">//down left to down right</span></span><br><span class="line">         <span class="keyword">if</span>(board[a<span class="number">-1</span>][j] == <span class="string">'O'</span>)&#123;</span><br><span class="line">             board[a<span class="number">-1</span>][j] = <span class="string">'A'</span>;</span><br><span class="line">             change(board, a<span class="number">-1</span>, j, a, b);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">1</span>; i&lt;a<span class="number">-1</span>; i++)&#123; <span class="comment">//change all 'O' left (means they are surround by 'X') to 'X'</span></span><br><span class="line">         <span class="keyword">for</span>(<span class="built_in">int</span> j=<span class="number">1</span>; j&lt;b<span class="number">-1</span>; j++)&#123;</span><br><span class="line">             <span class="keyword">if</span>(board[i][j] == <span class="string">'O'</span>)&#123;</span><br><span class="line">                 board[i][j] = <span class="string">'X'</span>;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>; i&lt;a; i++)&#123; <span class="comment">//change all 'A' to 'O'</span></span><br><span class="line">         <span class="keyword">for</span>(<span class="built_in">int</span> j=<span class="number">0</span>; j&lt;b; j++)&#123;</span><br><span class="line">             <span class="keyword">if</span>(board[i][j] == <span class="string">'A'</span>)&#123;</span><br><span class="line">                 board[i][j] = <span class="string">'O'</span>;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">public</span> <span class="built_in">void</span> change(char[][] board, <span class="built_in">int</span> i, <span class="built_in">int</span> j, <span class="built_in">int</span> a, <span class="built_in">int</span> b)&#123;</span><br><span class="line">     <span class="keyword">if</span>(i<span class="number">-1</span>&gt;=<span class="number">0</span> &amp;&amp; board[i<span class="number">-1</span>][j] == <span class="string">'O'</span>)&#123;<span class="comment">//Up</span></span><br><span class="line">         board[i<span class="number">-1</span>][j] = <span class="string">'A'</span>;</span><br><span class="line">         change(board, i<span class="number">-1</span>, j, a, b);</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">if</span>(i+<span class="number">1</span>&lt;a<span class="number">-1</span> &amp;&amp; board[i+<span class="number">1</span>][j] == <span class="string">'O'</span>)&#123;<span class="comment">//down</span></span><br><span class="line">         board[i+<span class="number">1</span>][j] = <span class="string">'A'</span>;</span><br><span class="line">         change(board, i+<span class="number">1</span>, j, a, b);</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">if</span>(j+<span class="number">1</span>&lt;b<span class="number">-1</span> &amp;&amp; board[i][j+<span class="number">1</span>] == <span class="string">'O'</span> )&#123;<span class="comment">//right</span></span><br><span class="line">         board[i][j+<span class="number">1</span>] = <span class="string">'A'</span>;</span><br><span class="line">         change(board, i, j+<span class="number">1</span>, a, b);</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">if</span>(j<span class="number">-1</span>&gt;=<span class="number">0</span> &amp;&amp; board[i][j<span class="number">-1</span>] == <span class="string">'O'</span>)&#123;<span class="comment">//left</span></span><br><span class="line">         board[i][j<span class="number">-1</span>] = <span class="string">'A'</span>;</span><br><span class="line">         change(board, i, j<span class="number">-1</span>, a, b);</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        int b = board[0].length;
-        if(b == 0){
-            return;
-        }
-
-        for(int i=0; i&lt;a;i++){ //left top to left down
-            if(board[i][0] == &apos;O&apos;){
-                board[i][0] = &apos;A&apos;;
-                change(board, i, 0, a, b);
-            }
-        }
-
-        for(int i=0; i&lt;a;i++){ //right top to right down
-            if(board[i][b-1] == &apos;O&apos;){
-                board[i][b-1] = &apos;A&apos;;
-                change(board, i, b-1, a, b);
-            }
-        }  
-
-        for(int j=0; j&lt;b;j++){ //up left to up right
-            if(board[0][j] == &apos;O&apos;){
-                board[0][j] = &apos;A&apos;;
-                change(board, 0, j, a, b);
-            }
-        }
-
-        for(int j=0; j&lt;b;j++){ //down left to down right
-            if(board[a-1][j] == &apos;O&apos;){
-                board[a-1][j] = &apos;A&apos;;
-                change(board, a-1, j, a, b);
-            }
-        }
-
-        for(int i=1; i&lt;a-1; i++){ //change all &apos;O&apos; left (means they are surround by &apos;X&apos;) to &apos;X&apos;
-            for(int j=1; j&lt;b-1; j++){
-                if(board[i][j] == &apos;O&apos;){
-                    board[i][j] = &apos;X&apos;;
-                }
-            }
-        }
-
-        for(int i=0; i&lt;a; i++){ //change all &apos;A&apos; to &apos;O&apos;
-            for(int j=0; j&lt;b; j++){
-                if(board[i][j] == &apos;A&apos;){
-                    board[i][j] = &apos;O&apos;;
-                }
-            }
-        }
-    }
-
-    public void change(char[][] board, int i, int j, int a, int b){
-        if(i-1&gt;=0 &amp;&amp; board[i-1][j] == &apos;O&apos;){//Up
-            board[i-1][j] = &apos;A&apos;;
-            change(board, i-1, j, a, b);
-        }
-
-        if(i+1&lt;a-1 &amp;&amp; board[i+1][j] == &apos;O&apos;){//down
-            board[i+1][j] = &apos;A&apos;;
-            change(board, i+1, j, a, b);
-        }
-
-        if(j+1&lt;b-1 &amp;&amp; board[i][j+1] == &apos;O&apos; ){//right
-            board[i][j+1] = &apos;A&apos;;
-            change(board, i, j+1, a, b);
-        }
-
-        if(j-1&gt;=0 &amp;&amp; board[i][j-1] == &apos;O&apos;){//left
-            board[i][j-1] = &apos;A&apos;;
-            change(board, i, j-1, a, b);
-        }
-    }
-}</code></pre><p><strong>测试结果：</strong>内存占用有点多…</p>
+<p><strong>测试结果：</strong>内存占用有点多…</p>
 <blockquote>
 <p>Runtime: 3 ms （beats 27%）<br>Memory Usage: 49.4 MB (beats 6%)</p>
 </blockquote>
 <h3 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h3><p>其实一开始是打算用C++做的，结果一看给的初始代码…被两个vector吓到了。</p>
-<pre><code>class Solution {
-    public:
-    void solve(vector&lt;vector&lt;char&gt;&gt;&amp; board) {
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    	<span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&gt;&amp; board)</span> </span>&#123;</span><br><span class="line">    	   </span><br><span class="line">    	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-    }
-};</code></pre><p>后来看了评论区大佬的代码发现并没有任何区别 <code>vector&lt;vector&lt;char&gt;&gt;&amp; board</code> = <code>char[][] board</code>，思路跟上面一样，而且跟我自己写的比简洁了太多，下面加了一些自己的注释（Java也可以如下简化）：</p>
-<pre><code>class Solution {
-    public:
-    void solve(vector&lt;vector&lt;char&gt;&gt;&amp; board) {
-        if(board.empty())return;
-        int row = board.size(),col = board[0].size();
-
-        for(int i=0;i&lt;col;i++)DFS(board,0,i,row,col),DFS(board,row-1,i,row,col);//first row and last row
-
-        for(int i=0;i&lt;row;i++)DFS(board,i,0,row,col),DFS(board,i,col-1,row,col); //first column and last column
-
-        for(int i=0;i&lt;row;i++)
-            for(int j=0;j&lt;col;j++)
-                if(board[i][j]==&apos;O&apos;)board[i][j]=&apos;X&apos;;
-                else if(board[i][j]==&apos;P&apos;)board[i][j]=&apos;O&apos;; //together
-    }
-
-    void DFS(vector&lt;vector&lt;char&gt;&gt;&amp; board,int r,int c,int rsize,int csize){
-        if(r&lt;0||c&lt;0||r==rsize||c==csize||board[r][c]!=&apos;O&apos;)return; //together
-        board[r][c] = &apos;P&apos;;
-        DFS(board,r+1,c,rsize,csize);
-        DFS(board,r,c+1,rsize,csize);
-        DFS(board,r-1,c,rsize,csize);
-        DFS(board,r,c-1,rsize,csize);
-    }
-};</code></pre><br/> 
+<p>后来看了评论区大佬的代码发现并没有任何区别 <code>vector&lt;vector&lt;char&gt;&gt;&amp; board</code> = <code>char[][] board</code>，思路跟上面一样，而且跟我自己写的比简洁了太多，下面加了一些自己的注释（Java也可以如下简化）：</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"> public:</span><br><span class="line"> void solve(vector&lt;vector&lt;<span class="built_in">char</span>&gt;&gt;&amp; board) &#123;</span><br><span class="line">     <span class="keyword">if</span>(board.empty<span class="literal">()</span>)return;</span><br><span class="line">     <span class="built_in">int</span> row = board.size<span class="literal">()</span>,col = board<span class="literal">[<span class="number">0</span>]</span>.size<span class="literal">()</span>;</span><br><span class="line"></span><br><span class="line">     for(<span class="built_in">int</span> i=<span class="number">0</span>;i&lt;col;i++)<span class="constructor">DFS(<span class="params">board</span>,0,<span class="params">i</span>,<span class="params">row</span>,<span class="params">col</span>)</span>,<span class="constructor">DFS(<span class="params">board</span>,<span class="params">row</span>-1,<span class="params">i</span>,<span class="params">row</span>,<span class="params">col</span>)</span>;<span class="comment">//first row and last row</span></span><br><span class="line"></span><br><span class="line">     for(<span class="built_in">int</span> i=<span class="number">0</span>;i&lt;row;i++)<span class="constructor">DFS(<span class="params">board</span>,<span class="params">i</span>,0,<span class="params">row</span>,<span class="params">col</span>)</span>,<span class="constructor">DFS(<span class="params">board</span>,<span class="params">i</span>,<span class="params">col</span>-1,<span class="params">row</span>,<span class="params">col</span>)</span>; <span class="comment">//first column and last column</span></span><br><span class="line">     </span><br><span class="line">     for(<span class="built_in">int</span> i=<span class="number">0</span>;i&lt;row;i++)</span><br><span class="line">         for(<span class="built_in">int</span> j=<span class="number">0</span>;j&lt;col;j++)</span><br><span class="line">             <span class="keyword">if</span>(board<span class="literal">[<span class="identifier">i</span>]</span><span class="literal">[<span class="identifier">j</span>]</span>==<span class="character">'O'</span>)board<span class="literal">[<span class="identifier">i</span>]</span><span class="literal">[<span class="identifier">j</span>]</span>=<span class="character">'X'</span>;</span><br><span class="line">             <span class="keyword">else</span> <span class="keyword">if</span>(board<span class="literal">[<span class="identifier">i</span>]</span><span class="literal">[<span class="identifier">j</span>]</span>==<span class="character">'P'</span>)board<span class="literal">[<span class="identifier">i</span>]</span><span class="literal">[<span class="identifier">j</span>]</span>=<span class="character">'O'</span>; <span class="comment">//together</span></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> void <span class="constructor">DFS(<span class="params">vector</span>&lt;<span class="params">vector</span>&lt;<span class="params">char</span>&gt;&gt;&amp; <span class="params">board</span>,<span class="params">int</span> <span class="params">r</span>,<span class="params">int</span> <span class="params">c</span>,<span class="params">int</span> <span class="params">rsize</span>,<span class="params">int</span> <span class="params">csize</span>)</span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(r&lt;<span class="number">0</span><span class="pattern-match"><span class="operator">||</span>c&lt;0<span class="operator">||</span>r<span class="operator">==</span>rsize<span class="operator">||</span>c<span class="operator">==</span>csize<span class="operator">||</span>board[r][c]!='<span class="constructor">O</span>')return; <span class="operator">/</span><span class="operator">/</span>together</span></span><br><span class="line"><span class="pattern-match">     board[r][c] = '<span class="constructor">P</span>';</span></span><br><span class="line"><span class="pattern-match">     <span class="constructor">DFS(<span class="params">board</span>,<span class="params">r</span>+1,<span class="params">c</span>,<span class="params">rsize</span>,<span class="params">csize</span>)</span>;</span></span><br><span class="line"><span class="pattern-match">     <span class="constructor">DFS(<span class="params">board</span>,<span class="params">r</span>,<span class="params">c</span>+1,<span class="params">rsize</span>,<span class="params">csize</span>)</span>;</span></span><br><span class="line"><span class="pattern-match">     <span class="constructor">DFS(<span class="params">board</span>,<span class="params">r</span>-1,<span class="params">c</span>,<span class="params">rsize</span>,<span class="params">csize</span>)</span>;</span></span><br><span class="line"><span class="pattern-match">     <span class="constructor">DFS(<span class="params">board</span>,<span class="params">r</span>,<span class="params">c</span>-1,<span class="params">rsize</span>,<span class="params">csize</span>)</span>;</span></span><br><span class="line"><span class="pattern-match"> &#125;</span></span><br><span class="line"><span class="pattern-match">&#125;;</span></span><br></pre></td></tr></table></figure>
+<br/> 
 
 <h2 id="Solution-3-BFS"><a href="#Solution-3-BFS" class="headerlink" title="Solution - 3 BFS"></a>Solution - 3 BFS</h2><p>与<strong>DFS</strong>对应，还有：<strong>Breadth-first search （BFS） / Breitensuche / 宽度优先搜索算法。</strong></p>
 <blockquote>
@@ -438,57 +329,9 @@ for(int i=0; i<a; i++){
 </blockquote>
 <p>两者的区别：</p>
 <p>感觉一般DFS更常用一些（通过递归很容易挖深度），BFS就要借助 queue (FIFO)/deque/vector (C++: Standard Template Library STL：Sequential Container）或者Queue/LinkedList/ArrayDeque（Java）。找到一个<code>&#39;O&#39;</code>后直接找上下左右并存在Container里面，下面是整合的C++ queue版本:</p>
-<pre><code>void solve(vector&lt;vector&lt;char&amp;board) { // the same as DFS
-    int width = board.size();
-    if (width == 0) //Add this to prevent run-time error!
-        return;
-    int length = board[0].size();
-    if  (length == 0) // Add this to prevent run-time error!
-        return;
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">void solve(vector&lt;vector&lt;<span class="built_in">char</span>&amp;board) &#123; <span class="comment">// the same as DFS</span></span><br><span class="line"> <span class="built_in">int</span> width = board.size<span class="literal">()</span>;</span><br><span class="line"> <span class="keyword">if</span> (width<span class="operator"> == </span><span class="number">0</span>) <span class="comment">//Add this to prevent run-time error!</span></span><br><span class="line">     return;</span><br><span class="line"> <span class="built_in">int</span> length = board<span class="literal">[<span class="number">0</span>]</span>.size<span class="literal">()</span>;</span><br><span class="line"> <span class="keyword">if</span>  (length<span class="operator"> == </span><span class="number">0</span>) <span class="comment">// Add this to prevent run-time error!</span></span><br><span class="line">     return;</span><br><span class="line">	</span><br><span class="line"> for (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; length; ++i)&#123;</span><br><span class="line">     <span class="keyword">if</span> (board<span class="literal">[<span class="number">0</span>]</span><span class="literal">[<span class="identifier">i</span>]</span><span class="operator"> == </span><span class="character">'O'</span>)</span><br><span class="line">         bfs<span class="constructor">Boundary(<span class="params">board</span>, 0, <span class="params">i</span>)</span>;</span><br><span class="line">     <span class="keyword">if</span> (board<span class="literal">[<span class="identifier">width</span>-<span class="number">1</span>]</span><span class="literal">[<span class="identifier">i</span>]</span><span class="operator"> == </span><span class="character">'O'</span>)</span><br><span class="line">         bfs<span class="constructor">Boundary(<span class="params">board</span>, <span class="params">width</span>-1, <span class="params">i</span>)</span>;</span><br><span class="line"> &#125;</span><br><span class="line">	</span><br><span class="line"> for (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; width; ++i)&#123;</span><br><span class="line">     <span class="keyword">if</span> (board<span class="literal">[<span class="identifier">i</span>]</span><span class="literal">[<span class="number">0</span>]</span><span class="operator"> == </span><span class="character">'O'</span>)</span><br><span class="line">         bfs<span class="constructor">Boundary(<span class="params">board</span>, <span class="params">i</span>, 0)</span>;</span><br><span class="line">     <span class="keyword">if</span> (board<span class="literal">[<span class="identifier">i</span>]</span><span class="literal">[<span class="identifier">length</span>-<span class="number">1</span>]</span><span class="operator"> == </span><span class="character">'O'</span>)</span><br><span class="line">         bfs<span class="constructor">Boundary(<span class="params">board</span>, <span class="params">i</span>, <span class="params">length</span>-1)</span>;</span><br><span class="line"> &#125;</span><br><span class="line">	</span><br><span class="line"> for (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; width; ++i)&#123;</span><br><span class="line">     for (<span class="built_in">int</span> j = <span class="number">0</span>; j &lt; length; ++j)&#123;</span><br><span class="line">         <span class="keyword">if</span> (board<span class="literal">[<span class="identifier">i</span>]</span><span class="literal">[<span class="identifier">j</span>]</span><span class="operator"> == </span><span class="character">'O'</span>)</span><br><span class="line">             board<span class="literal">[<span class="identifier">i</span>]</span><span class="literal">[<span class="identifier">j</span>]</span> = <span class="character">'X'</span>;</span><br><span class="line">         <span class="keyword">else</span> <span class="keyword">if</span> (board<span class="literal">[<span class="identifier">i</span>]</span><span class="literal">[<span class="identifier">j</span>]</span><span class="operator"> == </span><span class="character">'#'</span>)</span><br><span class="line">             board<span class="literal">[<span class="identifier">i</span>]</span><span class="literal">[<span class="identifier">j</span>]</span> = <span class="character">'O'</span>;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void <span class="constructor">BFS(<span class="params">vector</span>&lt;<span class="params">vector</span>&lt;<span class="params">char</span>&gt;&amp;<span class="params">board</span>, <span class="params">int</span> <span class="params">i</span>, <span class="params">int</span> <span class="params">j</span>)</span> &#123;</span><br><span class="line"> <span class="built_in">int</span> m = board.size<span class="literal">()</span>;</span><br><span class="line"> <span class="built_in">int</span> n = board<span class="literal">[<span class="number">0</span>]</span>.size<span class="literal">()</span>;</span><br><span class="line"> queue&lt;pair&lt;<span class="built_in">int</span>, intq;</span><br><span class="line"> q.push(make<span class="constructor">_pair(<span class="params">i</span>, <span class="params">j</span>)</span>);</span><br><span class="line"> <span class="keyword">while</span> (!q.empty<span class="literal">()</span>) &#123;</span><br><span class="line">     pair&lt;<span class="built_in">int</span>, intelem = q.front<span class="literal">()</span>; <span class="comment">//oldest element</span></span><br><span class="line">     q.pop<span class="literal">()</span>; <span class="comment">//delete the oldest element</span></span><br><span class="line">     i = elem.first;</span><br><span class="line">     j = elem.second;</span><br><span class="line">     <span class="keyword">if</span> (i &gt;= <span class="number">0</span><span class="operator"> &amp;&amp; </span>i &lt; m<span class="operator"> &amp;&amp; </span>j &gt;=<span class="number">0</span><span class="operator"> &amp;&amp; </span>j &lt; n<span class="operator"> &amp;&amp; </span>board<span class="literal">[<span class="identifier">i</span>]</span><span class="literal">[<span class="identifier">j</span>]</span><span class="operator"> == </span><span class="character">'O'</span>) &#123;</span><br><span class="line">         board<span class="literal">[<span class="identifier">i</span>]</span><span class="literal">[<span class="identifier">j</span>]</span> = <span class="character">'#'</span>;</span><br><span class="line">         q.push(make<span class="constructor">_pair(<span class="params">i</span> - 1, <span class="params">j</span>)</span>); <span class="comment">//down</span></span><br><span class="line">         q.push(make<span class="constructor">_pair(<span class="params">i</span> + 1, <span class="params">j</span>)</span>); <span class="comment">//up</span></span><br><span class="line">         q.push(make<span class="constructor">_pair(<span class="params">i</span>, <span class="params">j</span> - 1)</span>); <span class="comment">//left</span></span><br><span class="line">         q.push(make<span class="constructor">_pair(<span class="params">i</span>, <span class="params">j</span> + 1)</span>); <span class="comment">//right</span></span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    for (int i = 0; i &lt; length; ++i){
-        if (board[0][i] == &apos;O&apos;)
-            bfsBoundary(board, 0, i);
-        if (board[width-1][i] == &apos;O&apos;)
-            bfsBoundary(board, width-1, i);
-    }
-
-    for (int i = 0; i &lt; width; ++i){
-        if (board[i][0] == &apos;O&apos;)
-            bfsBoundary(board, i, 0);
-        if (board[i][length-1] == &apos;O&apos;)
-            bfsBoundary(board, i, length-1);
-    }
-
-    for (int i = 0; i &lt; width; ++i){
-        for (int j = 0; j &lt; length; ++j){
-            if (board[i][j] == &apos;O&apos;)
-                board[i][j] = &apos;X&apos;;
-            else if (board[i][j] == &apos;#&apos;)
-                board[i][j] = &apos;O&apos;;
-        }
-    }
-}
-
-void BFS(vector&lt;vector&lt;char&gt;&amp;board, int i, int j) {
-    int m = board.size();
-    int n = board[0].size();
-    queue&lt;pair&lt;int, intq;
-    q.push(make_pair(i, j));
-    while (!q.empty()) {
-        pair&lt;int, intelem = q.front(); //oldest element
-        q.pop(); //delete the oldest element
-        i = elem.first;
-        j = elem.second;
-        if (i &gt;= 0 &amp;&amp; i &lt; m &amp;&amp; j &gt;=0 &amp;&amp; j &lt; n &amp;&amp; board[i][j] == &apos;O&apos;) {
-            board[i][j] = &apos;#&apos;;
-            q.push(make_pair(i - 1, j)); //down
-            q.push(make_pair(i + 1, j)); //up
-            q.push(make_pair(i, j - 1)); //left
-            q.push(make_pair(i, j + 1)); //right
-        }
-    }
-}</code></pre><br/> 
+<br/> 
 
 <h2 id="Solution-4-Union-Find"><a href="#Solution-4-Union-Find" class="headerlink" title="Solution - 4 Union Find"></a>Solution - 4 Union Find</h2><p>看评论区发现这道题的另一种解法是 <strong>Union Find 并查集</strong>，定义如下：</p>
 <blockquote>
@@ -501,89 +344,17 @@ void BFS(vector&lt;vector&lt;char&gt;&amp;board, int i, int j) {
 </blockquote>
 <p>这道题我们就可以把<code>&#39;O&#39;</code>分为两大类，一类需要被转化成<code>&#39;O&#39;</code>（即联通边界），另一类不需要（即被全方位包围）。</p>
 <p>首先我们把每个节点各作为一类，用它的行数和列数生成一个 id 标识该类。</p>
-<pre><code>int node(int i, int j) {
-    return i * cols + j;
-}</code></pre><p>然后遍历每个<code>&#39;O&#39;</code>节点</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">node</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> i * cols + j;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后遍历每个<code>&#39;O&#39;</code>节点</p>
 <ul>
 <li>如果联通边界，就把它和 <code>dummyNode</code> 节点（一个在所有节点外的节点）合并</li>
 <li>否则和它上下左右的<code>&#39;O&#39;</code>合并</li>
 </ul>
 <p>最后就会把所有连通到边界的<code>&#39;O&#39;</code>和 <code>dummyNode</code> 合为了一类。</p>
-<pre><code>public class Solution {
-    int rows, cols;
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="symbol">Solution</span> &#123;</span><br><span class="line"> <span class="built_in">int</span> rows, cols;</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">public</span> <span class="built_in">void</span> solve(char[][] board) &#123;</span><br><span class="line">     <span class="keyword">if</span>(board == <span class="literal">null</span> || board.length == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">     </span><br><span class="line">     rows = board.length;</span><br><span class="line">     cols = board[<span class="number">0</span>].length;</span><br><span class="line">     </span><br><span class="line">     UnionFind uf = new UnionFind(rows * cols + <span class="number">1</span>);<span class="comment">//0,1,2...rows * cols(dummy)</span></span><br><span class="line">     <span class="built_in">int</span> dummyNode = rows * cols; <span class="comment">//all outer O should connected to this dummy</span></span><br><span class="line">     </span><br><span class="line">     <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; rows; i++) &#123;</span><br><span class="line">         <span class="keyword">for</span>(<span class="built_in">int</span> j = <span class="number">0</span>; j &lt; cols; j++) &#123;</span><br><span class="line">             <span class="keyword">if</span>(board[i][j] == <span class="string">'O'</span>) &#123;</span><br><span class="line">                 <span class="keyword">if</span>(i == <span class="number">0</span> || i == rows<span class="number">-1</span> || j == <span class="number">0</span> || j == cols<span class="number">-1</span>) &#123;</span><br><span class="line">                     uf.union(node(i,j), dummyNode); <span class="comment">//all outer O are connected to this dummy</span></span><br><span class="line">                 &#125;</span><br><span class="line">                 <span class="keyword">else</span> &#123;</span><br><span class="line">                     <span class="keyword">if</span>(i <span class="number">0</span> &amp;&amp; board[i<span class="number">-1</span>][j] == <span class="string">'O'</span>)  uf.union(node(i,j), node(i<span class="number">-1</span>,j)); <span class="comment">//down</span></span><br><span class="line">                     <span class="keyword">if</span>(i &lt; rows<span class="number">-1</span> &amp;&amp; board[i+<span class="number">1</span>][j] == <span class="string">'O'</span>)  uf.union(node(i,j), node(i+<span class="number">1</span>,j)); <span class="comment">// up</span></span><br><span class="line">                     <span class="keyword">if</span>(j <span class="number">0</span> &amp;&amp; board[i][j<span class="number">-1</span>] == <span class="string">'O'</span>)  uf.union(node(i,j), node(i, j<span class="number">-1</span>)); <span class="comment">// left</span></span><br><span class="line">                     <span class="keyword">if</span>(j &lt; cols<span class="number">-1</span> &amp;&amp; board[i][j+<span class="number">1</span>] == <span class="string">'O'</span>)  uf.union(node(i,j), node(i, j+<span class="number">1</span>)); <span class="comment">//right</span></span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; rows; i++) &#123;</span><br><span class="line">         <span class="keyword">for</span>(<span class="built_in">int</span> j = <span class="number">0</span>; j &lt; cols; j++) &#123;</span><br><span class="line">             <span class="keyword">if</span>(uf.isConnected(node(i,j), dummyNode)) &#123; <span class="comment">//if connected, no change</span></span><br><span class="line">                 board[i][j] = <span class="string">'O'</span>;</span><br><span class="line">             &#125;</span><br><span class="line">             <span class="keyword">else</span> &#123; <span class="comment">//change</span></span><br><span class="line">                 board[i][j] = <span class="string">'X'</span>;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> <span class="built_in">int</span> node(<span class="built_in">int</span> i, <span class="built_in">int</span> j) &#123;</span><br><span class="line">     <span class="keyword">return</span> i * cols + j; <span class="comment">//id to identify each node</span></span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="symbol">UnionFind</span> &#123;</span><br><span class="line"> <span class="built_in">int</span> [] parents;</span><br><span class="line"> <span class="keyword">public</span> UnionFind(<span class="built_in">int</span> totalNodes) &#123; <span class="comment">//Constructor</span></span><br><span class="line">     parents = new <span class="built_in">int</span>[totalNodes];</span><br><span class="line">     <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; totalNodes; i++) &#123;</span><br><span class="line">         parents[i] = i;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> <span class="built_in">void</span> union(<span class="built_in">int</span> node1, <span class="built_in">int</span> node2) &#123;</span><br><span class="line">     <span class="built_in">int</span> root1 = find(node1);</span><br><span class="line">     <span class="built_in">int</span> root2 = find(node2);</span><br><span class="line">     <span class="keyword">if</span>(root1 != root2) &#123;</span><br><span class="line">         parents[root2] = root1; <span class="comment">// only one representative</span></span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> <span class="built_in">int</span> find(<span class="built_in">int</span> node) &#123; <span class="comment">// find the representative</span></span><br><span class="line">     <span class="keyword">while</span>(parents[node] != node) &#123;</span><br><span class="line">         parents[node] = parents[parents[node]]; </span><br><span class="line">         node = parents[node]; </span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">return</span> node;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> <span class="built_in">bool</span>ean isConnected(<span class="built_in">int</span> node1, <span class="built_in">int</span> node2) &#123;</span><br><span class="line">     <span class="keyword">return</span> find(node1) == find(node2);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    public void solve(char[][] board) {
-        if(board == null || board.length == 0) return;
-
-        rows = board.length;
-        cols = board[0].length;
-
-        UnionFind uf = new UnionFind(rows * cols + 1);//0,1,2...rows * cols(dummy)
-        int dummyNode = rows * cols; //all outer O should connected to this dummy
-
-        for(int i = 0; i &lt; rows; i++) {
-            for(int j = 0; j &lt; cols; j++) {
-                if(board[i][j] == &apos;O&apos;) {
-                    if(i == 0 || i == rows-1 || j == 0 || j == cols-1) {
-                        uf.union(node(i,j), dummyNode); //all outer O are connected to this dummy
-                    }
-                    else {
-                        if(i 0 &amp;&amp; board[i-1][j] == &apos;O&apos;)  uf.union(node(i,j), node(i-1,j)); //down
-                        if(i &lt; rows-1 &amp;&amp; board[i+1][j] == &apos;O&apos;)  uf.union(node(i,j), node(i+1,j)); // up
-                        if(j 0 &amp;&amp; board[i][j-1] == &apos;O&apos;)  uf.union(node(i,j), node(i, j-1)); // left
-                        if(j &lt; cols-1 &amp;&amp; board[i][j+1] == &apos;O&apos;)  uf.union(node(i,j), node(i, j+1)); //right
-                    }
-                }
-            }
-        }
-
-        for(int i = 0; i &lt; rows; i++) {
-            for(int j = 0; j &lt; cols; j++) {
-                if(uf.isConnected(node(i,j), dummyNode)) { //if connected, no change
-                    board[i][j] = &apos;O&apos;;
-                }
-                else { //change
-                    board[i][j] = &apos;X&apos;;
-                }
-            }
-        }
-    }
-
-    int node(int i, int j) {
-        return i * cols + j; //id to identify each node
-    }
-}
-
-class UnionFind {
-    int [] parents;
-    public UnionFind(int totalNodes) { //Constructor
-        parents = new int[totalNodes];
-        for(int i = 0; i &lt; totalNodes; i++) {
-            parents[i] = i;
-        }
-    }
-
-    void union(int node1, int node2) {
-        int root1 = find(node1);
-        int root2 = find(node2);
-        if(root1 != root2) {
-            parents[root2] = root1; // only one representative
-        }
-    }
-
-    int find(int node) { // find the representative
-        while(parents[node] != node) {
-            parents[node] = parents[parents[node]]; 
-            node = parents[node]; 
-        }
-
-        return node;
-    }
-
-    boolean isConnected(int node1, int node2) {
-        return find(node1) == find(node2);
-    }
-}</code></pre><br/> 
+<br/> 
 
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ul>
 <li>作为刷的第一题Leetcode（6.17当天的每日挑战，本来以为是每天一个新题，后来才发现都是原有题库里的…）意外得挺有趣，有时候思路稍微转化一下就是一个全新的解法（DFS / BFS）。 评论区的Union更是让我眼前一亮。</li>
@@ -775,12 +546,12 @@ class UnionFind {
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">3k</span>
+    <span title="Symbols count total">11k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">2 mins.</span>
+    <span title="Reading time total">10 mins.</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
