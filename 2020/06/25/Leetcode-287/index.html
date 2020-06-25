@@ -29,7 +29,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/Liangda-w/images/master/Leetcode-287.png">
 <meta property="article:published_time" content="2020-06-25T16:28:54.000Z">
-<meta property="article:modified_time" content="2020-06-25T20:28:13.763Z">
+<meta property="article:modified_time" content="2020-06-25T20:30:52.742Z">
 <meta property="article:author" content="大达哒 Bright">
 <meta property="article:tag" content="Leetcode">
 <meta property="article:tag" content="Floyd">
@@ -196,7 +196,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-06-25 18:28:54 / Modified: 22:28:13" itemprop="dateCreated datePublished" datetime="2020-06-25T18:28:54+02:00">2020-06-25</time>
+              <time title="Created: 2020-06-25 18:28:54 / Modified: 22:30:52" itemprop="dateCreated datePublished" datetime="2020-06-25T18:28:54+02:00">2020-06-25</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -264,9 +264,9 @@
 <p><strong>Example:</strong><br><code>Input: [1,3,4,2,2]</code><br><code>Output: 2</code></p>
 <p><strong>Note:</strong></p>
 <ol>
-<li>You must not modify the array (assume the array is read only).</li>
-<li>You must use only constant, O(1) extra space.</li>
-<li>Your runtime complexity should be less than O(n^2).</li>
+<li>You <strong>must not modify</strong> the array (assume the array is read only).</li>
+<li>You must use only constant, <strong>O(1)</strong> extra space.</li>
+<li>Your runtime complexity should be less than <strong>O(n^2)</strong>.</li>
 <li>There is only one duplicate number in the array, but it could be repeated more than once.</li>
 </ol>
 </blockquote>
@@ -277,19 +277,17 @@
 <p>最后还是乖乖遍历每一个数字的时候在剩下的数字里找是否有和当前数字相同的数，如果有，直接return</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="symbol">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> findDuplicate(<span class="built_in">int</span>[] nums) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>; i&lt;nums.length;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="built_in">int</span> j=i+<span class="number">1</span>; j&lt;nums.length; j++)&#123; <span class="comment">// start to search from the next number</span></span><br><span class="line">                <span class="keyword">if</span>(nums[i] == nums[j])&#123;</span><br><span class="line">                    <span class="keyword">return</span> nums[i];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">//dummy return</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>Space complexity : <strong>O(1) **<br>Time complexity : **O(n^2)</strong></p>
+<p>Space complexity : <strong>O(1)</strong><br>Time complexity : <strong>O(n^2)</strong></p>
 <p>肯定不是最优解，果然…</p>
 <p><img src="https://raw.githubusercontent.com/Liangda-w/images/master/Leetcode-287.png" alt=""></p>
 <h2 id="Solution-2：-Sorting-O-nlgn"><a href="#Solution-2：-Sorting-O-nlgn" class="headerlink" title="Solution - 2： Sorting O(nlgn)"></a><strong>Solution - 2： Sorting O(nlgn)</strong></h2><p><strong>思路：</strong><br>如果数列是按大小排列的，那么只需要确认相邻的两个数是否相同。</p>
 <figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">   <span class="keyword"> public</span><span class="built_in"> int </span>findDuplicate(int[] nums) &#123;</span><br><span class="line">        Arrays.sort(nums); // sort the array</span><br><span class="line">        for (int i = 1; i &lt; nums.length; i++) &#123;</span><br><span class="line">           <span class="built_in"> if </span>(nums[i] == nums[i-1]) &#123;</span><br><span class="line">               <span class="built_in"> return </span>nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">       <span class="built_in"> return </span>-1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>Space complexity : <strong>O(1) or O(n)</strong>：如果可以用原本的数列（sort in place），即为O(1)，但是因为有第一条限制，所以这里是O(n)。<br>Time complexity : <strong>O(nlgn)</strong>：因为<code>sort</code></p>
-<h2 id="Solution-3：Set"><a href="#Solution-3：Set" class="headerlink" title="Solution - 3：Set"></a><strong>Solution - 3：Set</strong></h2><p><strong>思路：</strong> TODO</p>
+<h2 id="Solution-3：-Set"><a href="#Solution-3：-Set" class="headerlink" title="Solution - 3： Set"></a><strong>Solution - 3： Set</strong></h2><p><strong>思路：</strong> TODO</p>
 <h2 id="Solution-4：-Floyd’s-Tortoise-and-Hare-Cycle-Detection"><a href="#Solution-4：-Floyd’s-Tortoise-and-Hare-Cycle-Detection" class="headerlink" title="Solution - 4： Floyd’s Tortoise and Hare (Cycle Detection)"></a><strong>Solution - 4： Floyd’s Tortoise and Hare (Cycle Detection)</strong></h2><p><strong>思路：</strong> TODO</p>
 <h2 id="Application"><a href="#Application" class="headerlink" title="Application"></a><strong>Application</strong></h2><blockquote>
 <p>Proving that at least one duplicate must exist in nums is simple application of the <strong>pigeonhole principle</strong>. Here, each number in nums is a “pigeon” and each distinct number that can appear in nums is a “pigeonhole”. Because there are n+1 numbers and n distinct possible numbers, the pigeonhole principle implies that at least one of the numbers is duplicated.</p>
-</blockquote>
-<blockquote>
 <p>桌上有十个苹果，要把这十个苹果放到九个抽屉里，无论怎样放，我们会发现至少会有一个抽屉里面放不少于两个苹果。这一现象就是我们所说的“抽屉原理”。 抽屉原理的一般含义为：“如果每个抽屉代表一个集合，每一个苹果就可以代表一个元素，假如有n+1个元素放到n个集合中去，其中必定有一个集合里至少有两个元素。” 抽屉原理有时也被称为鸽巢原理。</p>
 </blockquote>
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a><strong>Summary</strong></h2><ul>
@@ -405,7 +403,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-1：-For-O-n-2"><span class="nav-number">2.</span> <span class="nav-text">Solution - 1： For O(n^2)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-2：-Sorting-O-nlgn"><span class="nav-number">3.</span> <span class="nav-text">Solution - 2： Sorting O(nlgn)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-3：Set"><span class="nav-number">4.</span> <span class="nav-text">Solution - 3：Set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-4：-Floyd’s-Tortoise-and-Hare-Cycle-Detection"><span class="nav-number">5.</span> <span class="nav-text">Solution - 4： Floyd’s Tortoise and Hare (Cycle Detection)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Application"><span class="nav-number">6.</span> <span class="nav-text">Application</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-number">7.</span> <span class="nav-text">Summary</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-1：-For-O-n-2"><span class="nav-number">2.</span> <span class="nav-text">Solution - 1： For O(n^2)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-2：-Sorting-O-nlgn"><span class="nav-number">3.</span> <span class="nav-text">Solution - 2： Sorting O(nlgn)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-3：-Set"><span class="nav-number">4.</span> <span class="nav-text">Solution - 3： Set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-4：-Floyd’s-Tortoise-and-Hare-Cycle-Detection"><span class="nav-number">5.</span> <span class="nav-text">Solution - 4： Floyd’s Tortoise and Hare (Cycle Detection)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Application"><span class="nav-number">6.</span> <span class="nav-text">Application</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-number">7.</span> <span class="nav-text">Summary</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
