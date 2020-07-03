@@ -1,1 +1,708 @@
-null
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cat_track_32px.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cat_track_16px.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+
+  <meta name="description" content="DescriptionDifficulty: Medium  Given a 2D board containing &#39;X&#39; and &#39;O&#39; (the letter O), capture all regions surrounded by &#39;X&#39;.A region is captured by flipping all &#39;O&#39;s i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode 130： Surrounded Regions">
+<meta property="og:url" content="http://yoursite.com/2020/06/21/Leetcode-130/index.html">
+<meta property="og:site_name" content="Bright&#39;s Blog">
+<meta property="og:description" content="DescriptionDifficulty: Medium  Given a 2D board containing &#39;X&#39; and &#39;O&#39; (the letter O), capture all regions surrounded by &#39;X&#39;.A region is captured by flipping all &#39;O&#39;s i">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-21T16:28:54.000Z">
+<meta property="article:modified_time" content="2020-06-30T13:40:31.526Z">
+<meta property="article:author" content="大达哒 Bright">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="BFS">
+<meta property="article:tag" content="DFS">
+<meta property="article:tag" content="Union Find">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/06/21/Leetcode-130/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Leetcode 130： Surrounded Regions | Bright's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+	<a href="https://github.com/Liangda-w/Liangda-w.github.io" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Bright's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">大达哒的小野望</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/21/Leetcode-130/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="大达哒 Bright">
+      <meta itemprop="description" content="书写是更好的思考, 讨论是绝佳的反思">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bright's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Leetcode 130： Surrounded Regions
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-21 18:28:54" itemprop="dateCreated datePublished" datetime="2020-06-21T18:28:54+02:00">2020-06-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-06-30 15:40:31" itemprop="dateModified" datetime="2020-06-30T15:40:31+02:00">2020-06-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Leetcode/Medium/" itemprop="url" rel="index"><span itemprop="name">Medium</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/06/21/Leetcode-130/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/21/Leetcode-130/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>9.3k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>8 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a><strong>Description</strong></h2><p>Difficulty: <strong>Medium</strong></p>
+<blockquote>
+<p>Given a 2D board containing <code>&#39;X&#39;</code> and <code>&#39;O&#39;</code> <strong>(the letter O)</strong>, capture all regions surrounded by <code>&#39;X&#39;</code>.<br>A region is captured by flipping all <code>&#39;O&#39;</code>s into <code>&#39;X&#39;</code>s in that surrounded region.</p>
+<p><strong>Example:</strong></p>
+<pre><code>X X X X
+X O O X
+X X O X
+X O X X</code></pre><p>After running your function, the board should be:</p>
+<pre><code>X X X X
+X X X X
+X X X X
+X O X X</code></pre><p><strong>Explanations:</strong></p>
+<p>Surrounded regions shouldn’t be on the border, which means that any <code>&#39;O&#39;</code> on the border of the board are not flipped to <code>&#39;X&#39;</code>. Any <code>&#39;O&#39;</code> that is not on the border and it is not connected to an <code>&#39;O&#39;</code> on the border will be flipped to <code>&#39;X&#39;</code>. Two cells are connected if they are adjacent cells connected horizontally or vertically.</p>
+</blockquote>
+ <a id="more"></a>
+
+<p>如 <code>&#39;X&#39;</code> 模块四周均被 <code>&#39;O&#39;</code> 包围，则将 <code>&#39;X&#39;</code> 换成 <code>&#39;O&#39;</code>。</p>
+<p><strong>特殊情况考虑：</strong></p>
+<ul>
+<li><code>char[][] board</code> 可以是空的， 所以要先验证是否长度为0，如果是，则终止此方法 <code>return;</code>，Testcase其实只有一个 <code>[]</code> 要特殊考虑，所以理论上第二个for循环不需要：</li>
+</ul>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int a = board.<span class="built_in">length</span>; </span><br><span class="line"><span class="keyword">if</span>(a = <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">int b = board[<span class="number">0</span>].<span class="built_in">length</span>;</span><br><span class="line"><span class="keyword">for</span>(int <span class="built_in">i</span>=<span class="number">0</span>; <span class="built_in">i</span>&lt;a; <span class="built_in">i</span>++)&#123;</span><br><span class="line">	<span class="keyword">if</span>(board[<span class="built_in">i</span>].<span class="built_in">length</span> == <span class="number">0</span> || board[<span class="built_in">i</span>].<span class="built_in">length</span> != b) <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution - 1"></a>Solution - 1</h2><p><strong>思路：</strong>看到这题的第一反应是写一个递归函数 (EN: recursive / DE: Rekursion)，找到第一个 <code>&#39;O&#39;</code>，调用此递归函数：</p>
+<ul>
+<li>如此<code>&#39;O&#39;</code>在边界上，不变</li>
+<li>如上下左右均为 <code>&#39;X&#39;</code>，则换成 <code>&#39;O&#39;</code>，</li>
+<li>如检测到了 <code>&#39;X&#39;</code>，则再次调用此递归函数，</li>
+</ul>
+<p>然而仔细一想：因为每次都会检查上下左右，那相邻的<code>&#39;O&#39;</code>会陷入死循环，<br>除非能记住是从哪个<code>&#39;O&#39;</code>被调用的。-&gt; 解决方法：加二个参数记住被调用的<code>&#39;O&#39;</code>的坐标。</p>
+<p>那么问题又来了：比如4个相邻的<code>&#39;O&#39;</code>呈正方形，那么同样会进入死循环，因为第四个<code>&#39;O&#39;</code>不认识第一个<code>&#39;O&#39;</code>。-&gt; 解决方法：加一个双重数组参数 <code>char[][] checked</code> 记住所有已经检测过的<code>&#39;O&#39;</code>的位置。</p>
+<p>理论上应该是可行的，<a href="https://leetcode.wang/leetcode-130-Surrounded-Regions.html">详情参见大佬总结</a>，但容易超时，此方法弃用。</p>
+<br/> 
+
+<h2 id="Solution-2-DFS"><a href="#Solution-2-DFS" class="headerlink" title="Solution - 2 DFS"></a>Solution - 2 DFS</h2><p><strong>思路：</strong>既然问题是如何记住从哪被调用的，那么只要把被调用的<code>&#39;O&#39;</code>标记或换掉就可以了，因此换了一个思路，不再找应该被替换的<code>&#39;O&#39;</code>，而是不应该被替换(即临边的<code>&#39;O&#39;</code>)：</p>
+<ol>
+<li>找到临边界的<code>&#39;O&#39;</code>，先把它们变成其他任意的字母（我这里选了<code>&#39;A&#39;</code>）</li>
+<li>通过临边界的<code>&#39;O&#39;</code>找到所有与之相邻的<code>&#39;O&#39;</code>并把他们变成<code>&#39;A&#39;</code>，这里<code>change（...）</code>方法用了递归</li>
+<li>把剩余的<code>&#39;O&#39;</code>变成<code>&#39;X&#39;</code></li>
+<li>最后再把所有<code>&#39;A&#39;</code>变回<code>&#39;O&#39;</code></li>
+</ol>
+<p>翻评论区发现这里面蕴藏了一个有名有姓的算法：<br><strong>Depth first search / Tiefensuche / 深度优先搜索</strong></p>
+<blockquote>
+<p>The algorithm starts at the root node (selecting some arbitrary node as the root node in the case of a graph) and explores as far as possible along each branch before backtracking. </p>
+</blockquote>
+<h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="symbol">Solution</span> &#123;</span><br><span class="line"> <span class="keyword">public</span> <span class="built_in">void</span> solve(char[][] board) &#123;</span><br><span class="line">     <span class="built_in">int</span> a = board.length; </span><br><span class="line">     <span class="keyword">if</span>(a == <span class="number">0</span>)&#123;</span><br><span class="line">         <span class="keyword">return</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="built_in">int</span> b = board[<span class="number">0</span>].length;</span><br><span class="line">     <span class="keyword">if</span>(b == <span class="number">0</span>)&#123;</span><br><span class="line">         <span class="keyword">return</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>; i&lt;a;i++)&#123; <span class="comment">//left top to left down</span></span><br><span class="line">         <span class="keyword">if</span>(board[i][<span class="number">0</span>] == <span class="string">'O'</span>)&#123;</span><br><span class="line">             board[i][<span class="number">0</span>] = <span class="string">'A'</span>;</span><br><span class="line">             change(board, i, <span class="number">0</span>, a, b);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>; i&lt;a;i++)&#123; <span class="comment">//right top to right down</span></span><br><span class="line">         <span class="keyword">if</span>(board[i][b<span class="number">-1</span>] == <span class="string">'O'</span>)&#123;</span><br><span class="line">             board[i][b<span class="number">-1</span>] = <span class="string">'A'</span>;</span><br><span class="line">             change(board, i, b<span class="number">-1</span>, a, b);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;  </span><br><span class="line">     </span><br><span class="line">     <span class="keyword">for</span>(<span class="built_in">int</span> j=<span class="number">0</span>; j&lt;b;j++)&#123; <span class="comment">//up left to up right</span></span><br><span class="line">         <span class="keyword">if</span>(board[<span class="number">0</span>][j] == <span class="string">'O'</span>)&#123;</span><br><span class="line">             board[<span class="number">0</span>][j] = <span class="string">'A'</span>;</span><br><span class="line">             change(board, <span class="number">0</span>, j, a, b);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">for</span>(<span class="built_in">int</span> j=<span class="number">0</span>; j&lt;b;j++)&#123; <span class="comment">//down left to down right</span></span><br><span class="line">         <span class="keyword">if</span>(board[a<span class="number">-1</span>][j] == <span class="string">'O'</span>)&#123;</span><br><span class="line">             board[a<span class="number">-1</span>][j] = <span class="string">'A'</span>;</span><br><span class="line">             change(board, a<span class="number">-1</span>, j, a, b);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">1</span>; i&lt;a<span class="number">-1</span>; i++)&#123; <span class="comment">//change all 'O' left (means they are surround by 'X') to 'X'</span></span><br><span class="line">         <span class="keyword">for</span>(<span class="built_in">int</span> j=<span class="number">1</span>; j&lt;b<span class="number">-1</span>; j++)&#123;</span><br><span class="line">             <span class="keyword">if</span>(board[i][j] == <span class="string">'O'</span>)&#123;</span><br><span class="line">                 board[i][j] = <span class="string">'X'</span>;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>; i&lt;a; i++)&#123; <span class="comment">//change all 'A' to 'O'</span></span><br><span class="line">         <span class="keyword">for</span>(<span class="built_in">int</span> j=<span class="number">0</span>; j&lt;b; j++)&#123;</span><br><span class="line">             <span class="keyword">if</span>(board[i][j] == <span class="string">'A'</span>)&#123;</span><br><span class="line">                 board[i][j] = <span class="string">'O'</span>;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">public</span> <span class="built_in">void</span> change(char[][] board, <span class="built_in">int</span> i, <span class="built_in">int</span> j, <span class="built_in">int</span> a, <span class="built_in">int</span> b)&#123;</span><br><span class="line">     <span class="keyword">if</span>(i<span class="number">-1</span>&gt;=<span class="number">0</span> &amp;&amp; board[i<span class="number">-1</span>][j] == <span class="string">'O'</span>)&#123;<span class="comment">//Up</span></span><br><span class="line">         board[i<span class="number">-1</span>][j] = <span class="string">'A'</span>;</span><br><span class="line">         change(board, i<span class="number">-1</span>, j, a, b);</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">if</span>(i+<span class="number">1</span>&lt;a<span class="number">-1</span> &amp;&amp; board[i+<span class="number">1</span>][j] == <span class="string">'O'</span>)&#123;<span class="comment">//down</span></span><br><span class="line">         board[i+<span class="number">1</span>][j] = <span class="string">'A'</span>;</span><br><span class="line">         change(board, i+<span class="number">1</span>, j, a, b);</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">if</span>(j+<span class="number">1</span>&lt;b<span class="number">-1</span> &amp;&amp; board[i][j+<span class="number">1</span>] == <span class="string">'O'</span> )&#123;<span class="comment">//right</span></span><br><span class="line">         board[i][j+<span class="number">1</span>] = <span class="string">'A'</span>;</span><br><span class="line">         change(board, i, j+<span class="number">1</span>, a, b);</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">if</span>(j<span class="number">-1</span>&gt;=<span class="number">0</span> &amp;&amp; board[i][j<span class="number">-1</span>] == <span class="string">'O'</span>)&#123;<span class="comment">//left</span></span><br><span class="line">         board[i][j<span class="number">-1</span>] = <span class="string">'A'</span>;</span><br><span class="line">         change(board, i, j<span class="number">-1</span>, a, b);</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试结果：</strong>内存占用有点多…</p>
+<blockquote>
+<p>Runtime: 3 ms （beats 27%）<br>Memory Usage: 49.4 MB (beats 6%)</p>
+</blockquote>
+<h3 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h3><p>其实一开始是打算用C++做的，结果一看给的初始代码…被两个vector吓到了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&gt;&amp; board)</span> </span>&#123;</span><br><span class="line">	   </span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>后来看了评论区大佬的代码发现并没有任何区别 <code>vector&lt;vector&lt;char&gt;&gt;&amp; board</code> = <code>char[][] board</code>，思路跟上面一样，而且跟我自己写的比简洁了太多，下面加了一些自己的注释（Java也可以如下简化）：</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"> public:</span><br><span class="line"> void solve(vector&lt;vector&lt;<span class="built_in">char</span>&gt;&gt;&amp; board) &#123;</span><br><span class="line">     <span class="keyword">if</span>(board.empty<span class="literal">()</span>)return;</span><br><span class="line">     <span class="built_in">int</span> row = board.size<span class="literal">()</span>,col = board<span class="literal">[<span class="number">0</span>]</span>.size<span class="literal">()</span>;</span><br><span class="line"></span><br><span class="line">     for(<span class="built_in">int</span> i=<span class="number">0</span>;i&lt;col;i++)<span class="constructor">DFS(<span class="params">board</span>,0,<span class="params">i</span>,<span class="params">row</span>,<span class="params">col</span>)</span>,<span class="constructor">DFS(<span class="params">board</span>,<span class="params">row</span>-1,<span class="params">i</span>,<span class="params">row</span>,<span class="params">col</span>)</span>;<span class="comment">//first row and last row</span></span><br><span class="line"></span><br><span class="line">     for(<span class="built_in">int</span> i=<span class="number">0</span>;i&lt;row;i++)<span class="constructor">DFS(<span class="params">board</span>,<span class="params">i</span>,0,<span class="params">row</span>,<span class="params">col</span>)</span>,<span class="constructor">DFS(<span class="params">board</span>,<span class="params">i</span>,<span class="params">col</span>-1,<span class="params">row</span>,<span class="params">col</span>)</span>; <span class="comment">//first column and last column</span></span><br><span class="line">     </span><br><span class="line">     for(<span class="built_in">int</span> i=<span class="number">0</span>;i&lt;row;i++)</span><br><span class="line">         for(<span class="built_in">int</span> j=<span class="number">0</span>;j&lt;col;j++)</span><br><span class="line">             <span class="keyword">if</span>(board<span class="literal">[<span class="identifier">i</span>]</span><span class="literal">[<span class="identifier">j</span>]</span>==<span class="character">'O'</span>)board<span class="literal">[<span class="identifier">i</span>]</span><span class="literal">[<span class="identifier">j</span>]</span>=<span class="character">'X'</span>;</span><br><span class="line">             <span class="keyword">else</span> <span class="keyword">if</span>(board<span class="literal">[<span class="identifier">i</span>]</span><span class="literal">[<span class="identifier">j</span>]</span>==<span class="character">'P'</span>)board<span class="literal">[<span class="identifier">i</span>]</span><span class="literal">[<span class="identifier">j</span>]</span>=<span class="character">'O'</span>; <span class="comment">//together</span></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> void <span class="constructor">DFS(<span class="params">vector</span>&lt;<span class="params">vector</span>&lt;<span class="params">char</span>&gt;&gt;&amp; <span class="params">board</span>,<span class="params">int</span> <span class="params">r</span>,<span class="params">int</span> <span class="params">c</span>,<span class="params">int</span> <span class="params">rsize</span>,<span class="params">int</span> <span class="params">csize</span>)</span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(r&lt;<span class="number">0</span><span class="pattern-match"><span class="operator">||</span>c&lt;0<span class="operator">||</span>r<span class="operator">==</span>rsize<span class="operator">||</span>c<span class="operator">==</span>csize<span class="operator">||</span>board[r][c]!='<span class="constructor">O</span>')return; <span class="operator">/</span><span class="operator">/</span>together</span></span><br><span class="line"><span class="pattern-match">     board[r][c] = '<span class="constructor">P</span>';</span></span><br><span class="line"><span class="pattern-match">     <span class="constructor">DFS(<span class="params">board</span>,<span class="params">r</span>+1,<span class="params">c</span>,<span class="params">rsize</span>,<span class="params">csize</span>)</span>;</span></span><br><span class="line"><span class="pattern-match">     <span class="constructor">DFS(<span class="params">board</span>,<span class="params">r</span>,<span class="params">c</span>+1,<span class="params">rsize</span>,<span class="params">csize</span>)</span>;</span></span><br><span class="line"><span class="pattern-match">     <span class="constructor">DFS(<span class="params">board</span>,<span class="params">r</span>-1,<span class="params">c</span>,<span class="params">rsize</span>,<span class="params">csize</span>)</span>;</span></span><br><span class="line"><span class="pattern-match">     <span class="constructor">DFS(<span class="params">board</span>,<span class="params">r</span>,<span class="params">c</span>-1,<span class="params">rsize</span>,<span class="params">csize</span>)</span>;</span></span><br><span class="line"><span class="pattern-match"> &#125;</span></span><br><span class="line"><span class="pattern-match">&#125;;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Solution-3-BFS"><a href="#Solution-3-BFS" class="headerlink" title="Solution - 3 BFS"></a>Solution - 3 BFS</h2><p>与<strong>DFS</strong>对应，还有：<strong>Breadth-first search （BFS） / Breitensuche / 宽度优先搜索算法。</strong></p>
+<blockquote>
+<p>It starts at the tree root (or some arbitrary node of a graph, sometimes referred to as a ‘search key’[1]), and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level. </p>
+</blockquote>
+<p>两者的区别：</p>
+<p>感觉一般DFS更常用一些（通过递归很容易挖深度），BFS就要借助 queue (FIFO)/deque/vector (C++: Standard Template Library STL：Sequential Container）或者Queue/LinkedList/ArrayDeque（Java）。找到一个<code>&#39;O&#39;</code>后直接找上下左右并存在Container里面，下面是整合的C++ queue版本:</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">void solve(vector&lt;vector&lt;<span class="built_in">char</span>&amp;board) &#123; <span class="comment">// the same as DFS</span></span><br><span class="line"> <span class="built_in">int</span> width = board.size<span class="literal">()</span>;</span><br><span class="line"> <span class="keyword">if</span> (width<span class="operator"> == </span><span class="number">0</span>) <span class="comment">//Add this to prevent run-time error!</span></span><br><span class="line">     return;</span><br><span class="line"> <span class="built_in">int</span> length = board<span class="literal">[<span class="number">0</span>]</span>.size<span class="literal">()</span>;</span><br><span class="line"> <span class="keyword">if</span>  (length<span class="operator"> == </span><span class="number">0</span>) <span class="comment">// Add this to prevent run-time error!</span></span><br><span class="line">     return;</span><br><span class="line">	</span><br><span class="line"> for (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; length; ++i)&#123;</span><br><span class="line">     <span class="keyword">if</span> (board<span class="literal">[<span class="number">0</span>]</span><span class="literal">[<span class="identifier">i</span>]</span><span class="operator"> == </span><span class="character">'O'</span>)</span><br><span class="line">         bfs<span class="constructor">Boundary(<span class="params">board</span>, 0, <span class="params">i</span>)</span>;</span><br><span class="line">     <span class="keyword">if</span> (board<span class="literal">[<span class="identifier">width</span>-<span class="number">1</span>]</span><span class="literal">[<span class="identifier">i</span>]</span><span class="operator"> == </span><span class="character">'O'</span>)</span><br><span class="line">         bfs<span class="constructor">Boundary(<span class="params">board</span>, <span class="params">width</span>-1, <span class="params">i</span>)</span>;</span><br><span class="line"> &#125;</span><br><span class="line">	</span><br><span class="line"> for (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; width; ++i)&#123;</span><br><span class="line">     <span class="keyword">if</span> (board<span class="literal">[<span class="identifier">i</span>]</span><span class="literal">[<span class="number">0</span>]</span><span class="operator"> == </span><span class="character">'O'</span>)</span><br><span class="line">         bfs<span class="constructor">Boundary(<span class="params">board</span>, <span class="params">i</span>, 0)</span>;</span><br><span class="line">     <span class="keyword">if</span> (board<span class="literal">[<span class="identifier">i</span>]</span><span class="literal">[<span class="identifier">length</span>-<span class="number">1</span>]</span><span class="operator"> == </span><span class="character">'O'</span>)</span><br><span class="line">         bfs<span class="constructor">Boundary(<span class="params">board</span>, <span class="params">i</span>, <span class="params">length</span>-1)</span>;</span><br><span class="line"> &#125;</span><br><span class="line">	</span><br><span class="line"> for (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; width; ++i)&#123;</span><br><span class="line">     for (<span class="built_in">int</span> j = <span class="number">0</span>; j &lt; length; ++j)&#123;</span><br><span class="line">         <span class="keyword">if</span> (board<span class="literal">[<span class="identifier">i</span>]</span><span class="literal">[<span class="identifier">j</span>]</span><span class="operator"> == </span><span class="character">'O'</span>)</span><br><span class="line">             board<span class="literal">[<span class="identifier">i</span>]</span><span class="literal">[<span class="identifier">j</span>]</span> = <span class="character">'X'</span>;</span><br><span class="line">         <span class="keyword">else</span> <span class="keyword">if</span> (board<span class="literal">[<span class="identifier">i</span>]</span><span class="literal">[<span class="identifier">j</span>]</span><span class="operator"> == </span><span class="character">'#'</span>)</span><br><span class="line">             board<span class="literal">[<span class="identifier">i</span>]</span><span class="literal">[<span class="identifier">j</span>]</span> = <span class="character">'O'</span>;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void <span class="constructor">BFS(<span class="params">vector</span>&lt;<span class="params">vector</span>&lt;<span class="params">char</span>&gt;&amp;<span class="params">board</span>, <span class="params">int</span> <span class="params">i</span>, <span class="params">int</span> <span class="params">j</span>)</span> &#123;</span><br><span class="line"> <span class="built_in">int</span> m = board.size<span class="literal">()</span>;</span><br><span class="line"> <span class="built_in">int</span> n = board<span class="literal">[<span class="number">0</span>]</span>.size<span class="literal">()</span>;</span><br><span class="line"> queue&lt;pair&lt;<span class="built_in">int</span>, intq;</span><br><span class="line"> q.push(make<span class="constructor">_pair(<span class="params">i</span>, <span class="params">j</span>)</span>);</span><br><span class="line"> <span class="keyword">while</span> (!q.empty<span class="literal">()</span>) &#123;</span><br><span class="line">     pair&lt;<span class="built_in">int</span>, intelem = q.front<span class="literal">()</span>; <span class="comment">//oldest element</span></span><br><span class="line">     q.pop<span class="literal">()</span>; <span class="comment">//delete the oldest element</span></span><br><span class="line">     i = elem.first;</span><br><span class="line">     j = elem.second;</span><br><span class="line">     <span class="keyword">if</span> (i &gt;= <span class="number">0</span><span class="operator"> &amp;&amp; </span>i &lt; m<span class="operator"> &amp;&amp; </span>j &gt;=<span class="number">0</span><span class="operator"> &amp;&amp; </span>j &lt; n<span class="operator"> &amp;&amp; </span>board<span class="literal">[<span class="identifier">i</span>]</span><span class="literal">[<span class="identifier">j</span>]</span><span class="operator"> == </span><span class="character">'O'</span>) &#123;</span><br><span class="line">         board<span class="literal">[<span class="identifier">i</span>]</span><span class="literal">[<span class="identifier">j</span>]</span> = <span class="character">'#'</span>;</span><br><span class="line">         q.push(make<span class="constructor">_pair(<span class="params">i</span> - 1, <span class="params">j</span>)</span>); <span class="comment">//down</span></span><br><span class="line">         q.push(make<span class="constructor">_pair(<span class="params">i</span> + 1, <span class="params">j</span>)</span>); <span class="comment">//up</span></span><br><span class="line">         q.push(make<span class="constructor">_pair(<span class="params">i</span>, <span class="params">j</span> - 1)</span>); <span class="comment">//left</span></span><br><span class="line">         q.push(make<span class="constructor">_pair(<span class="params">i</span>, <span class="params">j</span> + 1)</span>); <span class="comment">//right</span></span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Solution-4-Union-Find"><a href="#Solution-4-Union-Find" class="headerlink" title="Solution - 4 Union Find"></a>Solution - 4 Union Find</h2><p>看评论区发现这道题的另一种解法是 <strong>Union Find 并查集</strong>，定义如下：</p>
+<blockquote>
+<p>在计算机科学中，<strong>并查集</strong>是一种树型的数据结构，用于处理一些<strong>不交集（Disjoint Sets）</strong>的合并及查询问题。有一个<strong>联合-查找算法（union-find algorithm）</strong>定义了两个用于此数据结构的操作：</p>
+<ul>
+<li><code>Find</code>：确定元素属于哪一个子集。它可以被用来确定两个元素是否属于同一子集。</li>
+<li><code>Union</code>：将两个子集合并成同一个集合。</li>
+</ul>
+<p>由于支持这两种操作，一个不相交集也常被称为联合-查找数据结构（union-find data structure）或合并-查找集合（merge-find set）。其他的重要方法，MakeSet，用于创建单元素集合。有了这些方法，许多经典的划分问题可以被解决。<br>为了更加精确的定义这些方法，需要定义如何表示集合。一种常用的策略是为每个集合选定一个固定的元素，称为代表，以表示整个集合。接着，<code>Find(x)</code> 返回 x 所属集合的代表，而 <code>Union</code> 使用两个集合的代表作为参数。</p>
+</blockquote>
+<p>这道题我们就可以把<code>&#39;O&#39;</code>分为两大类，一类需要被转化成<code>&#39;O&#39;</code>（即联通边界），另一类不需要（即被全方位包围）。</p>
+<p>首先我们把每个节点各作为一类，用它的行数和列数生成一个 id 标识该类。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">node</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> i * cols + j;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后遍历每个<code>&#39;O&#39;</code>节点</p>
+<ul>
+<li>如果联通边界，就把它和 <code>dummyNode</code> 节点（一个在所有节点外的节点）合并</li>
+<li>否则和它上下左右的<code>&#39;O&#39;</code>合并</li>
+</ul>
+<p>最后就会把所有连通到边界的<code>&#39;O&#39;</code>和 <code>dummyNode</code> 合为了一类。</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="symbol">Solution</span> &#123;</span><br><span class="line"> <span class="built_in">int</span> rows, cols;</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">public</span> <span class="built_in">void</span> solve(char[][] board) &#123;</span><br><span class="line">     <span class="keyword">if</span>(board == <span class="literal">null</span> || board.length == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">     </span><br><span class="line">     rows = board.length;</span><br><span class="line">     cols = board[<span class="number">0</span>].length;</span><br><span class="line">     </span><br><span class="line">     UnionFind uf = new UnionFind(rows * cols + <span class="number">1</span>);<span class="comment">//0,1,2...rows * cols(dummy)</span></span><br><span class="line">     <span class="built_in">int</span> dummyNode = rows * cols; <span class="comment">//all outer O should connected to this dummy</span></span><br><span class="line">     </span><br><span class="line">     <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; rows; i++) &#123;</span><br><span class="line">         <span class="keyword">for</span>(<span class="built_in">int</span> j = <span class="number">0</span>; j &lt; cols; j++) &#123;</span><br><span class="line">             <span class="keyword">if</span>(board[i][j] == <span class="string">'O'</span>) &#123;</span><br><span class="line">                 <span class="keyword">if</span>(i == <span class="number">0</span> || i == rows<span class="number">-1</span> || j == <span class="number">0</span> || j == cols<span class="number">-1</span>) &#123;</span><br><span class="line">                     uf.union(node(i,j), dummyNode); <span class="comment">//all outer O are connected to this dummy</span></span><br><span class="line">                 &#125;</span><br><span class="line">                 <span class="keyword">else</span> &#123;</span><br><span class="line">                     <span class="keyword">if</span>(i <span class="number">0</span> &amp;&amp; board[i<span class="number">-1</span>][j] == <span class="string">'O'</span>)  uf.union(node(i,j), node(i<span class="number">-1</span>,j)); <span class="comment">//down</span></span><br><span class="line">                     <span class="keyword">if</span>(i &lt; rows<span class="number">-1</span> &amp;&amp; board[i+<span class="number">1</span>][j] == <span class="string">'O'</span>)  uf.union(node(i,j), node(i+<span class="number">1</span>,j)); <span class="comment">// up</span></span><br><span class="line">                     <span class="keyword">if</span>(j <span class="number">0</span> &amp;&amp; board[i][j<span class="number">-1</span>] == <span class="string">'O'</span>)  uf.union(node(i,j), node(i, j<span class="number">-1</span>)); <span class="comment">// left</span></span><br><span class="line">                     <span class="keyword">if</span>(j &lt; cols<span class="number">-1</span> &amp;&amp; board[i][j+<span class="number">1</span>] == <span class="string">'O'</span>)  uf.union(node(i,j), node(i, j+<span class="number">1</span>)); <span class="comment">//right</span></span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; rows; i++) &#123;</span><br><span class="line">         <span class="keyword">for</span>(<span class="built_in">int</span> j = <span class="number">0</span>; j &lt; cols; j++) &#123;</span><br><span class="line">             <span class="keyword">if</span>(uf.isConnected(node(i,j), dummyNode)) &#123; <span class="comment">//if connected, no change</span></span><br><span class="line">                 board[i][j] = <span class="string">'O'</span>;</span><br><span class="line">             &#125;</span><br><span class="line">             <span class="keyword">else</span> &#123; <span class="comment">//change</span></span><br><span class="line">                 board[i][j] = <span class="string">'X'</span>;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> <span class="built_in">int</span> node(<span class="built_in">int</span> i, <span class="built_in">int</span> j) &#123;</span><br><span class="line">     <span class="keyword">return</span> i * cols + j; <span class="comment">//id to identify each node</span></span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="symbol">UnionFind</span> &#123;</span><br><span class="line"> <span class="built_in">int</span> [] parents;</span><br><span class="line"> <span class="keyword">public</span> UnionFind(<span class="built_in">int</span> totalNodes) &#123; <span class="comment">//Constructor</span></span><br><span class="line">     parents = new <span class="built_in">int</span>[totalNodes];</span><br><span class="line">     <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; totalNodes; i++) &#123;</span><br><span class="line">         parents[i] = i;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> <span class="built_in">void</span> union(<span class="built_in">int</span> node1, <span class="built_in">int</span> node2) &#123;</span><br><span class="line">     <span class="built_in">int</span> root1 = find(node1);</span><br><span class="line">     <span class="built_in">int</span> root2 = find(node2);</span><br><span class="line">     <span class="keyword">if</span>(root1 != root2) &#123;</span><br><span class="line">         parents[root2] = root1; <span class="comment">// only one representative</span></span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> <span class="built_in">int</span> find(<span class="built_in">int</span> node) &#123; <span class="comment">// find the representative</span></span><br><span class="line">     <span class="keyword">while</span>(parents[node] != node) &#123;</span><br><span class="line">         parents[node] = parents[parents[node]]; </span><br><span class="line">         node = parents[node]; </span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">return</span> node;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> <span class="built_in">bool</span>ean isConnected(<span class="built_in">int</span> node1, <span class="built_in">int</span> node2) &#123;</span><br><span class="line">     <span class="keyword">return</span> find(node1) == find(node2);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ul>
+<li>作为刷的第一题Leetcode（6.17当天的每日挑战，本来以为是每天一个新题，后来才发现都是原有题库里的…）意外得挺有趣，有时候思路稍微转化一下就是一个全新的解法（DFS / BFS）。 评论区的Union更是让我眼前一亮。</li>
+<li>开始刷题之前纠结了一下该用什么语言，就我目前而言，可以大概掌握用来刷题的语言有Java和C/C++。本来想着要不两个用两个语言都做一遍，但发现没有这个必要，因为其实算法和思路才是关键，语言只是辅助，正所谓换汤不换药，况且两个语言之间相似度也很高。以后可能会专注于Java，毕竟学的时间长一点，当然遇到有趣的C++解题思路还是会一样分享的。（不过C++能实现的Java也一定可以？）</li>
+<li>其实触及到的三个算法（DFS，BFS和Union Find）我去年在Algorithmen und Datenstruktur学过，但是因为是个理论课，并没有尝试着把理论转化为代码进行实践，也是看到了这题才恍然想起来是这么回事儿。所以实践和记录都很重要，学的知识真的是太容易忘了。</li>
+</ul>
+<p>总之希望自己能坚持下去，每周记录分享几道有趣的题和解法。也欢迎大家留言讨论补充(●’◡’●)</p>
+
+    </div>
+
+    
+    
+    
+
+    
+     <div>
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:18px;">-------------End <i class="fa fa-paw"></i> Thank you for reading-------------</div>
+    
+</div>
+     </div>
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>大达哒 Bright
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="http://yoursite.com/2020/06/21/Leetcode-130/" title="Leetcode 130： Surrounded Regions">http://yoursite.com/2020/06/21/Leetcode-130/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Leetcode/" rel="tag"># Leetcode</a>
+              <a href="/tags/BFS/" rel="tag"># BFS</a>
+              <a href="/tags/DFS/" rel="tag"># DFS</a>
+              <a href="/tags/Union-Find/" rel="tag"># Union Find</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/20/Translation/" rel="prev" title="CH / EN / DE 专业词汇对照表（长期更新）">
+      <i class="fa fa-chevron-left"></i> CH / EN / DE 专业词汇对照表（长期更新）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/25/Leetcode-287/" rel="next" title="Leetcode 287： Find the Duplicate Number">
+      Leetcode 287： Find the Duplicate Number <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-1"><span class="nav-number">2.</span> <span class="nav-text">Solution - 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-2-DFS"><span class="nav-number">3.</span> <span class="nav-text">Solution - 2 DFS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java"><span class="nav-number">3.1.</span> <span class="nav-text">Java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C"><span class="nav-number">3.2.</span> <span class="nav-text">C++</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-3-BFS"><span class="nav-number">4.</span> <span class="nav-text">Solution - 3 BFS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-4-Union-Find"><span class="nav-number">5.</span> <span class="nav-text">Solution - 4 Union Find</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-number">6.</span> <span class="nav-text">Summary</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="大达哒 Bright"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">大达哒 Bright</p>
+  <div class="site-description" itemprop="description">书写是更好的思考, 讨论是绝佳的反思</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Liangda-w" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Liangda-w" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:liangda_wang@outlook.de" title="E-Mail → mailto:liangda_wang@outlook.de" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020.06.17 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">大达哒 Bright</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">27k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">25 mins.</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv"> | 
+	<span class="post-meta-item-icon">
+      		<i class="fa fa-eye"></i>
+     	</span>
+    <span id="busuanzi_value_site_pv"></span></span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv"><span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span> <span id="busuanzi_value_site_uv"></span></span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'BKmvvq7ui9KM19jjwxYLOROu-MdYXbMMI',
+      appKey     : 'l07Jlh3vsQcz1hhASKXNNY8z',
+      placeholder: "Your comment here:)",
+      avatar     : 'wavatar',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : 'en' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
