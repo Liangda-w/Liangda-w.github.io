@@ -30,7 +30,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/Liangda-w/images/master/offer4.png">
 <meta property="article:published_time" content="2020-07-22T18:28:54.000Z">
-<meta property="article:modified_time" content="2020-07-22T15:51:42.059Z">
+<meta property="article:modified_time" content="2020-07-22T15:56:13.264Z">
 <meta property="article:author" content="大达哒 Bright">
 <meta property="article:tag" content="Leetcode">
 <meta property="article:tag" content="Binary Search">
@@ -197,7 +197,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-07-22 20:28:54 / Modified: 17:51:42" itemprop="dateCreated datePublished" datetime="2020-07-22T20:28:54+02:00">2020-07-22</time>
+              <time title="Created: 2020-07-22 20:28:54 / Modified: 17:56:13" itemprop="dateCreated datePublished" datetime="2020-07-22T20:28:54+02:00">2020-07-22</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -272,6 +272,7 @@
 <p>Given target = <code>5</code>, return <code>true</code>.</p>
 <p>Given target = <code>20</code>, return <code>false</code>.</p>
 </blockquote>
+ <a id="more"></a>
 <p>二维数组中的查找，可以很方便地暴力解决，重点是如果利用此数组的特性更有效地解决问题。</p>
 <h2 id="Solution-1：-Brute-force-O-n-m"><a href="#Solution-1：-Brute-force-O-n-m" class="headerlink" title="Solution - 1：  Brute-force O(n*m)"></a><strong>Solution - 1： </strong> Brute-force O(n*m)</h2><p><strong>思路：</strong> 不考虑特性，正常的查找：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">searchMatrix</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">         <span class="keyword">if</span> (matrix == <span class="keyword">null</span> || matrix.length == <span class="number">0</span> || matrix[<span class="number">0</span>].length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;matrix.length; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;matrix[<span class="number">0</span>].length; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(matrix[i][j] == target)&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
