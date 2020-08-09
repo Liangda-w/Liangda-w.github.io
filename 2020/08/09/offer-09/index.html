@@ -29,7 +29,7 @@
 <meta property="og:description" content="DescriptionDifficulty: Simple  用两个栈实现一个队列。队列的声明如下，请实现它的两个函数 appendTail 和 deleteHead ，分别完成在队列尾部插入整数和在队列头部删除整数的功能。(若队列中没有元素，deleteHead 操作返回 -1 ) 示例 ： 输入：[“CQueue”,”appendTail”,”deleteHead”,”deleteHead”]">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-08-09T08:00:00.000Z">
-<meta property="article:modified_time" content="2020-08-09T08:07:01.426Z">
+<meta property="article:modified_time" content="2020-08-09T08:14:11.546Z">
 <meta property="article:author" content="大达哒 Bright">
 <meta property="article:tag" content="剑指offer">
 <meta name="twitter:card" content="summary">
@@ -194,7 +194,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-08-09 10:00:00 / Modified: 10:07:01" itemprop="dateCreated datePublished" datetime="2020-08-09T10:00:00+02:00">2020-08-09</time>
+              <time title="Created: 2020-08-09 10:00:00 / Modified: 10:14:11" itemprop="dateCreated datePublished" datetime="2020-08-09T10:00:00+02:00">2020-08-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -266,9 +266,9 @@
  <a id="more"></a>
 <p>输入的第一个括号里的是调用函数的名称，第二个是调用时的参数（只有append需要参数）。</p>
 <p>而输出里只有delete会返回一个数。</p>
-<h2 id="Solution-1：-ArrayList"><a href="#Solution-1：-ArrayList" class="headerlink" title="Solution - 1：  ArrayList"></a><strong>Solution - 1： </strong> ArrayList</h2><p><strong>思路：</strong> 理论上一个队列ArrayList就可以实现，这样很快，但不符合题意。</p>
+<h2 id="Solution-1：-ArrayList"><a href="#Solution-1：-ArrayList" class="headerlink" title="Solution - 1：  ArrayList"></a><strong>Solution - 1： </strong> ArrayList</h2><p><strong>思路：</strong> 理论上一个队列ArrayList就可以实现，但题意是如何用双栈来实现它。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CQueue</span> </span>&#123;</span><br><span class="line">    ArrayList&lt;Integer&gt; list;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        list = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">appendTail</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        list.add(value);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">deleteHead</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(list.size() == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> i = list.get(<span class="number">0</span>);</span><br><span class="line">        list.remove(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your CQueue object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * CQueue obj = new CQueue();</span></span><br><span class="line"><span class="comment"> * obj.appendTail(value);</span></span><br><span class="line"><span class="comment"> * int param_2 = obj.deleteHead();</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-<h2 id="Solution-1：-Stack"><a href="#Solution-1：-Stack" class="headerlink" title="Solution - 1：  Stack"></a><strong>Solution - 1： </strong> Stack</h2><p><strong>思路：</strong> 然而此题的用意是要使用栈，而栈有着<strong>先进后出</strong>的特性，意味着<code>deleteHead</code>需要把栈翻个底朝天才能找到头，所以在我们翻找的时候可以定义第二个栈用来存后面的元素，而又因为<strong>先进后出</strong>的特性，在我们删完第一个元素把后面的元素从第二个栈挪回来的时候，可以保证元素原来的顺序（其实不需要挪回来，放在那不影响）。这也是双栈的意思。</p>
+<h2 id="Solution-2：-Stack"><a href="#Solution-2：-Stack" class="headerlink" title="Solution - 2：  Stack"></a><strong>Solution - 2： </strong> Stack</h2><p><strong>思路：</strong> 然而此题的用意是要使用栈，而栈有着<strong>先进后出</strong>的特性，意味着<code>deleteHead</code>需要把栈翻个底朝天才能找到头，所以在我们翻找的时候可以定义第二个栈用来存后面的元素，而又因为<strong>先进后出</strong>的特性，在我们删完第一个元素把后面的元素从第二个栈挪回来的时候，可以保证元素原来的顺序（其实不需要挪回来，放在那不影响）。这也是双栈的意思。</p>
 <ul>
 <li>加入队尾 appendTail()函数： 将数字 val 加入栈 A 即可。</li>
 <li>删除队首deleteHead()函数： 有以下三种情况。<ol>
@@ -397,7 +397,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-1：-ArrayList"><span class="nav-number">2.</span> <span class="nav-text">Solution - 1：  ArrayList</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-1：-Stack"><span class="nav-number">3.</span> <span class="nav-text">Solution - 1：  Stack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-number">4.</span> <span class="nav-text">Summary</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-1：-ArrayList"><span class="nav-number">2.</span> <span class="nav-text">Solution - 1：  ArrayList</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-2：-Stack"><span class="nav-number">3.</span> <span class="nav-text">Solution - 2：  Stack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-number">4.</span> <span class="nav-text">Summary</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
