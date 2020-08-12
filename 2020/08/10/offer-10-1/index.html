@@ -29,7 +29,7 @@
 <meta property="og:description" content="DescriptionDifficulty: Simple  写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项。斐波那契数列的定义如下： 12F(0) &#x3D; 0,   F(1) &#x3D; 1F(N) &#x3D; F(N - 1) + F(N - 2), 其中 N &gt; 1. 斐波那契数列由 0 和 1 开始，之后的斐波那契数就是由之前的两数相加而得出。 答案需要取模 1e9+7（100">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-08-10T08:00:00.000Z">
-<meta property="article:modified_time" content="2020-08-10T09:50:46.176Z">
+<meta property="article:modified_time" content="2020-08-12T06:14:17.697Z">
 <meta property="article:author" content="大达哒 Bright">
 <meta property="article:tag" content="剑指offer">
 <meta name="twitter:card" content="summary">
@@ -192,10 +192,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-08-10 10:00:00 / Modified: 11:50:46" itemprop="dateCreated datePublished" datetime="2020-08-10T10:00:00+02:00">2020-08-10</time>
+              <time title="Created: 2020-08-10 10:00:00" itemprop="dateCreated datePublished" datetime="2020-08-10T10:00:00+02:00">2020-08-10</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-12 08:14:17" itemprop="dateModified" datetime="2020-08-12T08:14:17+02:00">2020-08-12</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -269,14 +275,14 @@
 </code></pre></blockquote>
  <a id="more"></a>
 <p>一开始没明白取模是什么意思，后来看了下评论区：因为当数字越来越大后面在n = 45左右的时候会超过integer的上限，所以通过 <code>% 1000000007</code> 来表达。</p>
-<h2 id="Solution-1：-Iterative"><a href="#Solution-1：-Iterative" class="headerlink" title="Solution - 1：  Iterative"></a><strong>Solution - 1： </strong> Iterative</h2><p><strong>思路：</strong> 非递归，动态规划，按照式子一步步算。从计算效率、空间复杂度上看，本题最佳解法。</p>
+<h2 id="Solution-1：-Iterative-DP"><a href="#Solution-1：-Iterative-DP" class="headerlink" title="Solution - 1：  Iterative DP"></a><strong>Solution - 1： </strong> Iterative DP</h2><p><strong>思路：</strong> 非递归，动态规划，按照式子一步步算。从计算效率、空间复杂度上看，本题最佳解法。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) <span class="keyword">return</span> n;</span><br><span class="line">        <span class="keyword">int</span> f1 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> f2 = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> sum = (f1 + f2) % <span class="number">1000000007</span>;</span><br><span class="line">            f1 = f2;</span><br><span class="line">            f2 = sum;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> f2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>Time complexity:</strong> O(n)<br><strong>Space complexity:</strong> O(1)</p>
 <h2 id="Solution-2：-Recursive"><a href="#Solution-2：-Recursive" class="headerlink" title="Solution - 2：  Recursive"></a><strong>Solution - 2： </strong> Recursive</h2><p><strong>思路：</strong>  把 f(n) 问题的计算拆分成 f(n−1) 和 f(n−2)两个子问题的计算并递归，以 f(0) 和 f(1) 为终止条件。</p>
 <p><strong>缺点</strong>： 大量重复的递归计算，例如 f(n) 和 f(n−1) 两者向下递归需要各自计算 f(n−2) 的值，n&gt;41的时候就超时了。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>; </span><br><span class="line">        <span class="keyword">return</span> (fib(n-<span class="number">1</span>)% <span class="number">1000000007</span> + fib(n-<span class="number">2</span>)% <span class="number">1000000007</span>) % <span class="number">1000000007</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>Time complexity</strong>: O(2^n) since T(n) = T(n-1) + T(n-2)is an exponential time<br> <strong>Space complexity:</strong> O(n) space for recursive function call stack</p>
-<h2 id="Solution-3：-Recursive-with-HashMap"><a href="#Solution-3：-Recursive-with-HashMap" class="headerlink" title="Solution - 3：  Recursive with HashMap"></a><strong>Solution - 3： </strong> Recursive with HashMap</h2><p><strong>思路：</strong>  在递归法的基础上，新建一个长度为 n 的数组，用于在递归时存储 f(0)) 至 f(n) 的数字值，重复遇到某数字则直接从数组取用，避免了重复的递归计算。除了HashMap也可以用array。 </p>
+<h2 id="Solution-3：-Recursive-with-HashMap"><a href="#Solution-3：-Recursive-with-HashMap" class="headerlink" title="Solution - 3：  Recursive with HashMap"></a><strong>Solution - 3： </strong> Recursive with HashMap</h2><p><strong>思路：</strong>  在递归法的基础上，新建一个长度为 n 的数组，用于在递归时存储 f(0) 至 f(n) 的数字值，重复遇到某数字则直接从数组取用，避免了重复的递归计算。除了HashMap也可以用array。 </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">   <span class="keyword">int</span> constant = <span class="number">1000000007</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> fib(n, <span class="keyword">new</span> HashMap());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n, Map&lt;Integer, Integer&gt; map)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> n;</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(n))</span><br><span class="line">            <span class="keyword">return</span> map.get(n);</span><br><span class="line">        <span class="keyword">int</span> first = fib(n - <span class="number">1</span>, map) % constant;</span><br><span class="line">        map.put(n - <span class="number">1</span>, first);</span><br><span class="line">        <span class="keyword">int</span> second = fib(n - <span class="number">2</span>, map) % constant;</span><br><span class="line">        map.put(n - <span class="number">2</span>, second);</span><br><span class="line">        <span class="keyword">int</span> res = (first + second) % constant;</span><br><span class="line">        map.put(n, res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>Time complexity</strong>: O(n) calcaute once for each number<br><strong>Space complexity:</strong> O(n) space for HashMap</p>
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a><strong>Summary</strong></h2><ul>
@@ -332,7 +338,10 @@
     <a href="/2020/08/09/offer-09/" rel="prev" title="剑指offer 09： 用两个栈实现队列">
       <i class="fa fa-chevron-left"></i> 剑指offer 09： 用两个栈实现队列
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/12/offer-10-2/" rel="next" title="剑指offer 10-2： 青蛙跳台阶问题 Climbing Stairs (Leetcode 70)">
+      剑指offer 10-2： 青蛙跳台阶问题 Climbing Stairs (Leetcode 70) <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -392,7 +401,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-1：-Iterative"><span class="nav-number">2.</span> <span class="nav-text">Solution - 1：  Iterative</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-2：-Recursive"><span class="nav-number">3.</span> <span class="nav-text">Solution - 2：  Recursive</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-3：-Recursive-with-HashMap"><span class="nav-number">4.</span> <span class="nav-text">Solution - 3：  Recursive with HashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-number">5.</span> <span class="nav-text">Summary</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-1：-Iterative-DP"><span class="nav-number">2.</span> <span class="nav-text">Solution - 1：  Iterative DP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-2：-Recursive"><span class="nav-number">3.</span> <span class="nav-text">Solution - 2：  Recursive</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-3：-Recursive-with-HashMap"><span class="nav-number">4.</span> <span class="nav-text">Solution - 3：  Recursive with HashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-number">5.</span> <span class="nav-text">Summary</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -408,7 +417,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -421,7 +430,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">24</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -465,12 +474,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">144k</span>
+    <span title="Symbols count total">150k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">2:11</span>
+    <span title="Reading time total">2:16</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
