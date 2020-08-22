@@ -21,15 +21,15 @@
   </script>
 
 
-  <meta name="description" content="DescriptionDifficulty: Simple  写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项。斐波那契数列的定义如下： 12F(0) &#x3D; 0,   F(1) &#x3D; 1F(N) &#x3D; F(N - 1) + F(N - 2), 其中 N &gt; 1. 斐波那契数列由 0 和 1 开始，之后的斐波那契数就是由之前的两数相加而得出。 答案需要取模 1e9+7（100">
+  <meta name="description" content="DescriptionDifficulty: Simple  The Fibonacci numbers, commonly denoted F(n) form a sequence, called the Fibonacci sequence, such that each number is the sum of the two preceding ones, starting from 0">
 <meta property="og:type" content="article">
 <meta property="og:title" content="剑指offer 10-1： 斐波那契数列 Fibonacci Number (Leetcode 509)">
 <meta property="og:url" content="http://yoursite.com/2020/08/10/offer-10-1/index.html">
 <meta property="og:site_name" content="Bright&#39;s Blog">
-<meta property="og:description" content="DescriptionDifficulty: Simple  写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项。斐波那契数列的定义如下： 12F(0) &#x3D; 0,   F(1) &#x3D; 1F(N) &#x3D; F(N - 1) + F(N - 2), 其中 N &gt; 1. 斐波那契数列由 0 和 1 开始，之后的斐波那契数就是由之前的两数相加而得出。 答案需要取模 1e9+7（100">
+<meta property="og:description" content="DescriptionDifficulty: Simple  The Fibonacci numbers, commonly denoted F(n) form a sequence, called the Fibonacci sequence, such that each number is the sum of the two preceding ones, starting from 0">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-08-10T08:00:00.000Z">
-<meta property="article:modified_time" content="2020-08-12T06:14:17.697Z">
+<meta property="article:modified_time" content="2020-08-22T11:21:16.285Z">
 <meta property="article:author" content="大达哒 Bright">
 <meta property="article:tag" content="剑指offer">
 <meta name="twitter:card" content="summary">
@@ -200,7 +200,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-12 08:14:17" itemprop="dateModified" datetime="2020-08-12T08:14:17+02:00">2020-08-12</time>
+                <time title="Modified: 2020-08-22 13:21:16" itemprop="dateModified" datetime="2020-08-22T13:21:16+02:00">2020-08-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -243,7 +243,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.7k</span>
+              <span>1.9k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -264,15 +264,13 @@
       
         <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a><strong>Description</strong></h2><p>Difficulty: <strong>Simple</strong></p>
 <blockquote>
-<p>写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项。斐波那契数列的定义如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">F(<span class="number">0</span>) = <span class="number">0</span>,   F(<span class="number">1</span>) = <span class="number">1</span></span><br><span class="line">F(N) = F(N - <span class="number">1</span>) + F(N - <span class="number">2</span>), 其中 N &gt; <span class="number">1</span>.</span><br></pre></td></tr></table></figure>
-<p>斐波那契数列由 0 和 1 开始，之后的斐波那契数就是由之前的两数相加而得出。</p>
+<p>The <strong>Fibonacci numbers</strong>, commonly denoted <code>F(n)</code> form a sequence, called the <strong>Fibonacci sequence</strong>, such that each number is the sum of the two preceding ones, starting from <code>0</code> and <code>1</code>. That is,</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">F(<span class="number">0</span>) = <span class="number">0</span>,   F(<span class="number">1</span>) = <span class="number">1</span></span><br><span class="line">F(N) = F(N - <span class="number">1</span>) + F(N - <span class="number">2</span>), <span class="keyword">for</span> N &gt; <span class="number">1</span>.</span><br></pre></td></tr></table></figure>
+<p>Given <code>N</code>, calculate <code>F(N)</code>.</p>
 <p>答案需要<strong>取模</strong> 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。</p>
-<p>示例：</p>
-<p>输入：n = 5<br>输出：5</p>
-<p>提示：</p>
-<pre><code>0 &lt;= n &lt;= 100
-</code></pre></blockquote>
+<p>Example:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: <span class="number">4</span></span><br><span class="line">&gt;Output: <span class="number">3</span></span><br><span class="line">&gt;Explanation: F(<span class="number">4</span>) = F(<span class="number">3</span>) + F(<span class="number">2</span>) = <span class="number">2</span> + <span class="number">1</span> = <span class="number">3</span>.</span><br></pre></td></tr></table></figure>
+</blockquote>
  <a id="more"></a>
 <p>一开始没明白取模是什么意思，后来看了下评论区：因为当数字越来越大后面在n = 45左右的时候会超过integer的上限，所以通过 <code>% 1000000007</code> 来表达。</p>
 <h2 id="Solution-1：-Iterative-DP"><a href="#Solution-1：-Iterative-DP" class="headerlink" title="Solution - 1：  Iterative DP"></a><strong>Solution - 1： </strong> Iterative DP</h2><p><strong>思路：</strong> 非递归，动态规划，按照式子一步步算。从计算效率、空间复杂度上看，本题最佳解法。</p>
@@ -417,7 +415,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -474,12 +472,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">171k</span>
+    <span title="Symbols count total">175k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">2:36</span>
+    <span title="Reading time total">2:39</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
