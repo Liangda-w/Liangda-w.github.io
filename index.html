@@ -282,6 +282,130 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/23/Leetcode-1559/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="大达哒 Bright">
+      <meta itemprop="description" content="书写是更好的思考, 讨论是绝佳的反思">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bright's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/23/Leetcode-1559/" class="post-title-link" itemprop="url">Leetcode 1559： Detect Cycles in 2D Grid</a>
+        </h2>
+
+        <div class="post-meta">
+
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-23 10:00:00 / Modified: 22:50:11" itemprop="dateCreated datePublished" datetime="2020-08-23T10:00:00+02:00">2020-08-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Leetcode/Hard/" itemprop="url" rel="index"><span itemprop="name">Hard</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/08/23/Leetcode-1559/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/23/Leetcode-1559/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>7.6k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>7 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a><strong>Description</strong></h2><p>Difficulty: <strong>Hard</strong></p>
+<blockquote>
+<p>Given a 2D array of characters grid of size m x n, you need to find if there exists any cycle consisting of the same value in grid.</p>
+<p>A cycle is a path of <strong>length 4 or more in the grid that starts and ends at the same cell</strong>. From a given cell, you can move to one of the cells adjacent to it in one of the four directions (up, down, left, or right), if it has the same value of the current cell.</p>
+<p>Also, you cannot move to the cell that you visited in your last move. For example, the cycle (1, 1) -&gt; (1, 2) -&gt; (1, 1) is invalid because from (1, 2) we visited (1, 1) which was the last visited cell.</p>
+<p>Return true if any cycle of the same value exists in grid, otherwise, return false.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input: grid = [</span><br><span class="line">    [<span class="string">"a"</span>,<span class="string">"a"</span>,<span class="string">"a"</span>,<span class="string">"a"</span>],</span><br><span class="line">    [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"b"</span>,<span class="string">"a"</span>],</span><br><span class="line">    [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"b"</span>,<span class="string">"a"</span>],</span><br><span class="line">    [<span class="string">"a"</span>,<span class="string">"a"</span>,<span class="string">"a"</span>,<span class="string">"a"</span>]</span><br><span class="line">]   </span><br><span class="line">Output: <span class="keyword">true</span></span><br><span class="line">Explanation: There are two valid cycles。</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input: grid = [</span><br><span class="line">    [<span class="string">"c"</span>,<span class="string">"c"</span>,<span class="string">"c"</span>,<span class="string">"a"</span>],</span><br><span class="line">    [<span class="string">"c"</span>,<span class="string">"d"</span>,<span class="string">"c"</span>,<span class="string">"c"</span>],</span><br><span class="line">    [<span class="string">"c"</span>,<span class="string">"c"</span>,<span class="string">"e"</span>,<span class="string">"c"</span>],</span><br><span class="line">    [<span class="string">"f"</span>,<span class="string">"c"</span>,<span class="string">"c"</span>,<span class="string">"c"</span>]</span><br><span class="line">]</span><br><span class="line">Output: <span class="keyword">true</span></span><br><span class="line">Explanation: There is only one valid cycle highlighted in the image below:</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: grid = [</span><br><span class="line">    [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"b"</span>],</span><br><span class="line">    [<span class="string">"b"</span>,<span class="string">"z"</span>,<span class="string">"b"</span>],</span><br><span class="line">    [<span class="string">"b"</span>,<span class="string">"b"</span>,<span class="string">"a"</span>]</span><br><span class="line">]</span><br><span class="line">Output: <span class="keyword">false</span></span><br></pre></td></tr></table></figure>
+<p><strong>Constraints:</strong></p>
+<p>m == grid.length<br>n == grid[i].length<br>1 &lt;= m &lt;= 500<br>1 &lt;= n &lt;= 500<br>grid consists only of lowercase English letters.</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/23/Leetcode-1559/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/22/Leetcode%20summary/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -475,581 +599,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/17/GeR-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="大达哒 Bright">
-      <meta itemprop="description" content="书写是更好的思考, 讨论是绝佳的反思">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bright's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/17/GeR-1/" class="post-title-link" itemprop="url">Grundlagen des externes Rechnungswesens 1 Inventar und Bilanz</a>
-        </h2>
-
-        <div class="post-meta">
-
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-17 10:00:00" itemprop="dateCreated datePublished" datetime="2020-08-17T10:00:00+02:00">2020-08-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-23 12:14:22" itemprop="dateModified" datetime="2020-08-23T12:14:22+02:00">2020-08-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/GeR/" itemprop="url" rel="index"><span itemprop="name">GeR</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/08/17/GeR-1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/17/GeR-1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>12k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>11 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>[TOC]</p>
-<p>Jeder Kaufmann ist verpflichtet, Bücher zu führen, um seine Handelsgeschäfte und die Lage seines Vermögens sichtbar zu machen. Hierbei unterliegt 收到 er gesetzlichen Anforderungen zur Buchführungspflicht und über die Art der Bücherführung. </p>
-<p>Die <strong>Buchführung</strong> 记账 (das systematische Notieren und Registrieren der Einnahmen und Ausgaben in einem Betrieb) hat den Grundsätzen ordnungsmäßiger Buchführung eines gewissenhaften 认真负责的 Kaufmanns zu folgen.</p>
-<h1 id="1-Buchfuhrungsgrundsatze"><a href="#1-Buchfuhrungsgrundsatze" class="headerlink" title="1. Buchführungsgrundsätze"></a>1. Buchführungsgrundsätze</h1><ul>
-<li>Buchführung als Teil des Rechnungswesens </li>
-<li>laufende, systematische und in Geldgrößen vorgenommene <strong>Dokumentation</strong> aller <strong>==Geschäftsvorfälle==</strong>  in einem Unternehmen<ul>
-<li>Ereignis, das eine Veränderung des unternehmerischen <strong>Bruttovermögens</strong> (= Gesamtvermögen) in <strong>Höhe</strong> und/oder <strong>Struktur</strong> bewirkt. → Ansatz und Bewertung</li>
-<li>wirtschaftlich relevante Vorgänge</li>
-<li>in Geldgrößen bewertbar, quantifizierbar, mit Auswirkungen auf Vermögen und Kapital <ul>
-<li>können sein: Zahlungsvorgänge zwischen Unternehmen und Umwelt</li>
-<li>Güterbewegungen, die mit Zahlungsströmen verbunden sind</li>
-<li>rein innerbetriebliche mengen-oder wertmäßige Veränderung </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>chronologisch, lückenlos und ordnungsmäßig</li>
-<li>= Dokumentationsfunktion der <strong>FiBu</strong><ul>
-<li><strong>(Finanzbuchhaltung)</strong>: gibt Aufschluss 解释 über die Finanzsituation des ganzen Unternehmens.</li>
-</ul>
-</li>
-<li>im Gegensatz zu <strong>BeBu</strong>: erfasst nur den Leistungserstellungsprozess (Teilrechnung)<ul>
-<li><strong>(Finanzbuchhaltung innerhalb Unternehmung):</strong> ist genauer und aufgeteilt in die einzelnen Unternehmensspalten. Als Führungsinstrument für Management der Unternehmung</li>
-</ul>
-</li>
-</ul>
-<h2 id="1-1-Gesetzliche-Vorschriften"><a href="#1-1-Gesetzliche-Vorschriften" class="headerlink" title="1.1 Gesetzliche Vorschriften"></a>1.1 Gesetzliche Vorschriften</h2><h3 id="1-1-1-Handelsrecht-§-238"><a href="#1-1-1-Handelsrecht-§-238" class="headerlink" title="1.1.1 Handelsrecht § 238"></a>1.1.1 Handelsrecht § 238</h3><p>(grundsätzlich) Jeder <strong>Kaufmann</strong> 商人 ist verpflichtet, <strong>Bücher zu führen</strong> und in diesen seine Handelsgeschäfte und die Lage seines Vermögens nach den <strong>Grundsätzen ordnungsmäßiger Buchführung (GoB)</strong> ersichtlich zu machen.</p>
-<h4 id="Kaufmann"><a href="#Kaufmann" class="headerlink" title="Kaufmann"></a>Kaufmann</h4><ul>
-<li><strong>Istkaufmann</strong>: Betreiben eines Handelsgewerbes  → Eintrag ins Handelsregister 商业登记册 als Einzelkaufmann oder Personenhandelsgewerbe</li>
-<li><strong>Kannkaufmann</strong>: Freiwilliges Eintragen ins Handelsregister </li>
-<li><strong>Formkaufmann</strong>: Handelsgesellschaften 商业公司</li>
-</ul>
-<p>Einzelkaufleute, die an zwei aufeinanderfolgenden Geschäftsjahren einen </p>
-<ul>
-<li>Umsatz &lt;= 600.000 EUR und </li>
-<li>JÜ &lt;= 60.000 EUR </li>
-</ul>
-<p>aufweisen, besitzen ein Wahlrecht zur <strong>Befreiung der Handelsrecht</strong></p>
-<p>Besonderheit: Im Fall der Neugründung treten Rechtsfolgen bereits ein, wenn die Wertegrenzen am ersten Abschlussstichtag nach Gründung nicht überschritten werden.</p>
-<h4 id="Grundsatze-ordnungsmasiger-Buchfuhrung-GoB"><a href="#Grundsatze-ordnungsmasiger-Buchfuhrung-GoB" class="headerlink" title="Grundsätze ordnungsmäßiger Buchführung (GoB)"></a>Grundsätze ordnungsmäßiger Buchführung (GoB)</h4><ul>
-<li>neben Einzelvorschriften erstmals in § 238 HGB erwähnt </li>
-<li>unbestimmter Rechtsbegriff </li>
-<li>„System von sich wechselseitig ergänzenden und beschränkenden Prinzipien und Einzelnormen zur Rechnungslegung“ (Moxter) </li>
-<li>kodifizierte 编纂成法典的 und nicht kodifizierte GoB </li>
-<li>Bsp.: Vorsichtsprinzip nach § 252 Abs. 1 Nr. 4 HGB</li>
-<li>Geltungsbereich: alle Kaufleute </li>
-<li>Erreichung der Schutzzwecke der Rechnungslegung 账目报告</li>
-<li>Konkretisierungen des Gläubigerschutzprinzips </li>
-<li>Entwicklung durch Gesetzgebung 立法 und Rechtsprechung 判决</li>
-</ul>
-<p><strong>Bestimmungen zur Führung der Handelsbücher 账册:</strong></p>
-<ul>
-<li>lebende Sprache </li>
-<li>Eindeutigkeit von Abkürzungen und Symbolen </li>
-<li>Eintragungen: vollständig, richtig, zeitgerecht und geordnet </li>
-<li>keine Unkenntlichmachung ursprünglicher Eintragungen, Radierverbot</li>
-<li>Führung auf Datenträgern unter Sicherstellung von Verfügbar- und Lesbarkeit der Daten</li>
-</ul>
-<p><strong>ordnungsmäßiger Buchführung</strong> bedeutet (Beschaffenheit der Buchführung):</p>
-<ul>
-<li>sachverständiger 内行的 Dritter </li>
-<li>angemessene Zeit</li>
-<li>Überblick über die Geschäftsvorfälle und über die Lage des Unternehmens</li>
-<li>Verfolgung der Geschäftsvorfälle „in ihrer Entstehung und Abwicklung“</li>
-</ul>
-<h4 id="Geschaftsjahr"><a href="#Geschaftsjahr" class="headerlink" title="Geschäftsjahr"></a>Geschäftsjahr</h4><ul>
-<li><p>Die <strong>Abrechnungsperiode</strong> der Finanzbuchführung ist das Geschäftsjahr, welches immer den Zeitraum vom <strong>1.1 bis zum 31.12.</strong> eines Jahres umfasst. </p>
-<p>→ <strong>Falsch</strong>: Kann vom Kalenderjahr abweichen, zum Beispiel bei bestimmten Branchen wie Landwirtschaft vom 1.7.-30.6., um Abschlussarbeiten zu erleichtern.</p>
-</li>
-<li><p>Geschäftsjahr darf nicht länger als 12 Monate sein. </p>
-</li>
-<li><p>Aber: <strong>Rumpfgeschäftsjahre</strong> mit weniger als 12 Monate, z.B. bei Unternehmensgründung, Beendigungsbeschluss, Änderung des Geschäftsjahres.</p>
-</li>
-</ul>
-<h3 id="1-1-2-Steuerrecht-§-140-AO"><a href="#1-1-2-Steuerrecht-§-140-AO" class="headerlink" title="1.1.2 Steuerrecht § 140 AO"></a>1.1.2 Steuerrecht § 140 AO</h3><h4 id="derivative-Buchfuhrungspflicht"><a href="#derivative-Buchfuhrungspflicht" class="headerlink" title="derivative Buchführungspflicht:"></a>derivative Buchführungspflicht:</h4><p>„Wer nach anderen Gesetzen als den Steuergesetzen Bücher und Aufzeichnungen zu führen hat, die für die Besteuerung von Bedeutung sind, hat die Verpflichtungen, die ihm nach den anderen Gesetzen obliegen, auch für die Besteuerung zu erfüllen“. (§ 140 AO)</p>
-<h4 id="originare-Buchfuhrungspflicht"><a href="#originare-Buchfuhrungspflicht" class="headerlink" title="originäre Buchführungspflicht"></a>originäre Buchführungspflicht</h4><p>Buchführungspflicht für Gewerbetreibende, wenn </p>
-<ul>
-<li>Umsätze &gt; 600 000 EUR oder </li>
-<li>Gewinn   &gt; 60 000 EUR</li>
-</ul>
-<p>und nicht bereits nach § 140 AO Buchführungspflicht besteht.</p>
-<h3 id="1-1-3-Sinn-und-Zweck-der-Buchfuhrungspflicht"><a href="#1-1-3-Sinn-und-Zweck-der-Buchfuhrungspflicht" class="headerlink" title="1.1.3 Sinn und Zweck der Buchführungspflicht"></a>1.1.3 Sinn und Zweck der Buchführungspflicht</h3><ul>
-<li>Folgt aus den Zielen des Jahresabschlusses </li>
-<li>Einblick in die Handelsgeschäfte und in die Vermögenslage eines Kaufmanns </li>
-<li><strong>Ziel</strong>: klare, übersichtliche und nachprüfbare Dokumentation des Vermögens und der Vermögensentwicklung </li>
-<li>Daraus gründet sich die Gläubigerschutzerfordernis- und Konkursvorsorgefunktion 破产</li>
-<li>Buchführung dient: <ul>
-<li>Information über den Stand von Schulden  und Vermögen </li>
-<li>Sicherung der Haftungsmasse gegen die Entziehung von Vermögensgegenständen </li>
-<li>Sicherung der Beweiskraft durch Bücher</li>
-</ul>
-</li>
-</ul>
-<h1 id="2-Buchfuhrungsorganisation"><a href="#2-Buchfuhrungsorganisation" class="headerlink" title="2. Buchführungsorganisation"></a>2. Buchführungsorganisation</h1><h2 id="2-1-Systeme-der-Buchfuhrung"><a href="#2-1-Systeme-der-Buchfuhrung" class="headerlink" title="2.1 Systeme der Buchführung"></a>2.1 Systeme der Buchführung</h2><p>gesetzliche Vorschriften schreiben kein System zwingend vor</p>
-<h3 id="2-1-1-Kameralistische-Buchfuhrung-财务会计学"><a href="#2-1-1-Kameralistische-Buchfuhrung-财务会计学" class="headerlink" title="2.1.1 Kameralistische Buchführung 财务会计学"></a>2.1.1 Kameralistische Buchführung 财务会计学</h3><ul>
-<li>Einnahmen-/ Ausgabenrechnung </li>
-<li>Verwaltungs- und Betriebskameralistik  </li>
-<li>öffentliche Verwaltungen</li>
-<li><strong>ungeeignet</strong> für kaufmännische Betriebe</li>
-</ul>
-<h3 id="2-1-2-Einfache-Buchfuhrung"><a href="#2-1-2-Einfache-Buchfuhrung" class="headerlink" title="2.1.2 Einfache Buchführung"></a>2.1.2 Einfache Buchführung</h3><ul>
-<li>beschränkt auf <strong>Bestandskonten</strong> </li>
-<li>Buchungen ohne Gegenbuchungen </li>
-<li>chronologische Erfassung der Geschäftsvorfälle im Grundbuch </li>
-<li>Erfolgsermittlung durch Vermögensvergleich</li>
-<li><strong>Nachteile</strong>: <ul>
-<li>keine Erfolgskonten</li>
-<li>keine Kontrollmöglichkeit</li>
-<li>Aufstellung des Jahresabschlusses durch Fehlen einer GVR (Gewinn- und Verlustrechnung) aufwendig</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-1-3-Doppelte-Buchfuhrung"><a href="#2-1-3-Doppelte-Buchfuhrung" class="headerlink" title="2.1.3 Doppelte Buchführung"></a>2.1.3 Doppelte Buchführung</h3><ul>
-<li>in der Praxis am bedeutsamsten </li>
-<li>jeder Geschäftsvorfall Wertübergang (Tauschakt) i. S. v. Leistung und Gegenleistung </li>
-<li>mindestens zwei Konten: <strong>Bestands- und Erfolgskonten</strong> </li>
-<li>Verbuchung in chronologischer (Grundbuch) und sachlicher Ordnung (Hauptbuch) </li>
-<li>zweifache Erfolgsermittlung: <strong>Vermögensvergleich</strong> und Gegenüberstellung von <strong>Aufwand und Ertrag</strong></li>
-</ul>
-<h2 id="2-2-Organisation-der-Buchfuhrung"><a href="#2-2-Organisation-der-Buchfuhrung" class="headerlink" title="2.2 Organisation der Buchführung"></a>2.2 Organisation der Buchführung</h2><h3 id="2-2-1-Belegorganisation"><a href="#2-2-1-Belegorganisation" class="headerlink" title="2.2.1 Belegorganisation"></a>2.2.1 Belegorganisation</h3><ul>
-<li><strong>Belegprinzip</strong>: <strong>Keine Buchung ohne Beleg</strong> </li>
-<li>Sinn und Zweck von Beleg: <strong>Beweis von Korrektheit</strong> der Angaben über Geschäftsvorfälle </li>
-<li>Eigen- und Fremdbeleg </li>
-<li>Belegablage 存放处: geordnet, Überprüf- und Nachvollziehbarkeit von Zusammengehörigkeit von Buchung und Beleg. Daher Angabe eines Beleghinweises (laufende Buchungsnummer). </li>
-<li>Belegordnung nach Sachkriterien: Kunde, Lieferant, Bank </li>
-<li>In Praxis mit Buchungsstempel: Beleginhalt, Kto.-Nr., anzusprechendes Kto, Buchungstext, -datum, Belegnummer und Betrag</li>
-<li>Aufbewahrungsfrist 10 Jahre </li>
-</ul>
-<h3 id="2-2-2-Organisation-der-Bucher"><a href="#2-2-2-Organisation-der-Bucher" class="headerlink" title="2.2.2 Organisation der Bücher"></a>2.2.2 Organisation der Bücher</h3><h4 id="Grundbuch"><a href="#Grundbuch" class="headerlink" title="Grundbuch"></a>Grundbuch</h4><ul>
-<li><p><strong>chronologische</strong> Erfassung, Bsp. Bankbuch, Kassenbuch, Rechnungseingangs-, Rechnungsausgangsbücher </p>
-</li>
-<li><p>Angaben: </p>
-<ul>
-<li>Datum</li>
-<li>Vorgang</li>
-<li>Beleghinweis </li>
-<li>Konto</li>
-<li>Gegenkonto </li>
-<li>Betrag</li>
-</ul>
-</li>
-</ul>
-<h4 id="Hauptbuch"><a href="#Hauptbuch" class="headerlink" title="Hauptbuch"></a>Hauptbuch</h4><ul>
-<li><strong>systematische / sachliche</strong> Erfassung </li>
-<li>Sachkonten, T-Konto</li>
-<li>alle Bestands- und Erfolgskonten </li>
-<li>Orientierung an Kontenplan/ Kontenrahmen </li>
-<li>Abschluss führt zu Bilanz und GVR</li>
-</ul>
-<h4 id="Neben-Hilfsbuch"><a href="#Neben-Hilfsbuch" class="headerlink" title="Neben-, Hilfsbuch"></a>Neben-, Hilfsbuch</h4><ul>
-<li>Aufgabe: Erweiterung der Aussagefähigkeit der Hauptbücher </li>
-<li>detaillierte und zusätzliche Einzelinformationen </li>
-<li>Bsp. Lohn- und Gehaltsbuch, Anlagen- und Materialbuchführung, Kontokorrentbuch</li>
-</ul>
-<h2 id="2-3-Aufbewahrungspflicht-保管"><a href="#2-3-Aufbewahrungspflicht-保管" class="headerlink" title="2.3 Aufbewahrungspflicht 保管"></a>2.3 Aufbewahrungspflicht 保管</h2><p>§ 257 HGB Aufbewahrung und Vorlage: </p>
-<ul>
-<li>geordnete Aufbewahrung der Unterlagen </li>
-<li>grundsätzlich <strong>10</strong> Jahre </li>
-<li>6 Jahre: „empfangene Handelsbriefe“ und „Wiedergaben der abgesandten Handelsbriefe“ </li>
-<li>Aufbewahrungspflicht: Dokumentations- und Beweissicherungsfunktion </li>
-</ul>
-<p>§§ 258 ff. HGB Vorlegung im Rechtsstreit, bei Auseinandersetzungen durch gerichtliche Anordnung: </p>
-<ul>
-<li>Aufbewahrungsfrist „mit dem Schluss des Kalenderjahres“ </li>
-<li>Aufbewahrung auch „auf einem Bildträger oder auf anderen Datenträgern“, wenn GoB-konform: Ausnahme Eröffnungsbilanzen und Abschlüsse </li>
-</ul>
-<h1 id="3-Inventar-财产清单-und-Bilanz-收支结算"><a href="#3-Inventar-财产清单-und-Bilanz-收支结算" class="headerlink" title="3. Inventar 财产清单 und Bilanz 收支结算"></a>3. Inventar 财产清单 und Bilanz 收支结算</h1><h2 id="3-1-Inventur-清点存货-und-Inventar"><a href="#3-1-Inventur-清点存货-und-Inventar" class="headerlink" title="3.1 Inventur 清点存货 und Inventar"></a>3.1 Inventur 清点存货 und Inventar</h2><h3 id="3-1-1-Inventur"><a href="#3-1-1-Inventur" class="headerlink" title="3.1.1 Inventur"></a>3.1.1 Inventur</h3><p>Körperliche <strong>Bestandsaufnahme</strong> aller <strong>Vermögensgegenstände und Schulden</strong> durch tatsächliche Inaugenscheinnahme 检查 (zählen, messen, wiegen) </p>
-<p>Die Inventur ist die für das Erstellen des Inventars notwendige Tätigkeit (<strong>Bestandsaufnahme</strong>) unter der Beachtung der GoI (Grundsätze ordnungsgemäßer Inventur):</p>
-<ul>
-<li><strong>Vollständigkeit</strong>: Erfassung sämtl. Vermögensgegenstände und Schulden         </li>
-<li><strong>Richtigkeit</strong>: zutreffende Erfassung nach Art, Menge und Wert <ul>
-<li>Sachgerechte 符合实际情况的 Differenzierung </li>
-<li>Einzelerfassung und -bewertung </li>
-</ul>
-</li>
-<li><strong>Nachprüfbarkeit</strong>: Dokumentation der Verfahren und der Ergebnisse der Bestandsaufnahme durch sachverständigen Dritten </li>
-<li><strong>Klarheit</strong>: übersichtliche und vollständige Aufzeichnung, sachgerechte Ordnung und Gliederung der Inventurposten </li>
-<li>Verschiedene Inventurformen unterscheiden sich nach  Art, Umfang und Zeitpunkt</li>
-</ul>
-<h4 id="Inventurverfahren"><a href="#Inventurverfahren" class="headerlink" title="Inventurverfahren"></a>Inventurverfahren</h4><p>bezeichnen <strong>Art und Umfang</strong> der Bestandsaufnahme </p>
-<ul>
-<li><strong>Körperliche</strong> <strong>Bestandsaufnahme</strong> (<strong>materielle</strong>) nach Art, Menge &amp; Wert<ul>
-<li><strong>(1) Vollinventur</strong> </li>
-<li><strong>(2) Stichprobeninventur</strong> (mit Hilfe anerkannter mathematisch- statistischer Methoden)</li>
-</ul>
-</li>
-<li><strong>Buchmäßige</strong> <strong>Bestandsaufnahme</strong> bspw.: <strong>immaterielle</strong> Vermögensgegenstände, Forderungen, Schulden. Aufnahme anhand von Belegen, Urkunden, Lizenzverträge, etc.<ul>
-<li><strong>(3) Buchinventur</strong> </li>
-</ul>
-</li>
-</ul>
-<h4 id="Inventursysteme"><a href="#Inventursysteme" class="headerlink" title="Inventursysteme"></a>Inventursysteme</h4><p>bezeichnen den <strong>Zeitpunkt</strong> der Bestandsaufnahme:</p>
-<ul>
-<li>Grundsatz: Ende Geschäftsjahr 31.12<ul>
-<li><strong>(1) klassische</strong> <strong>Stichtagsinventur</strong> (+/- 1 Tag) </li>
-</ul>
-</li>
-<li>Wirtschaftlichkeit: Fortschreibung 补充统计<ul>
-<li><strong>(2) ausgeweitete Stichtagsinventur</strong> (+/- 10 Tage um Abschlussstichtag) </li>
-</ul>
-</li>
-<li>Wirtschaftlichkeit + Ordnungsmäßigkeit: Lagerbuchführung, körperliche Bestandsaufnahme 1x jährlich<ul>
-<li><strong>(3) permanente Inventur</strong> </li>
-</ul>
-</li>
-<li>keine mengenmäßige Änderung, nur Wertfortschreibung<ul>
-<li><strong>(4) vor- oder nachverlegte Inventur</strong> (3 Monate vor/2 Monate nach Bilanzstichtag) <ul>
-<li>„besonderes Inventar“ </li>
-<li>nur mit <strong>wertmäßiger Fortschreibung/Rückrechnung</strong></li>
-<li>Weil die Aufnahme zu einem anderen Zeitpunkt als dem Bilanzstichtag stattfindet, wird ein besonderes Verzeichnis der festgestellten Vermögensgegenstände und Schulden, ein besonderes Inventar, aufgestellt. Ausgehend von diesem besonderen Inventar wird dann lediglich wertmäßig fortgeschrieben oder rückgerechnet, deshalb reicht die Angabe „Waren im Wert von“, nur Werte, keine Mengen</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="3-1-2-Inventar"><a href="#3-1-2-Inventar" class="headerlink" title="3.1.2 Inventar"></a>3.1.2 Inventar</h3><h4 id="Gesetzliche-Vorschriften-Inventarpflicht"><a href="#Gesetzliche-Vorschriften-Inventarpflicht" class="headerlink" title="Gesetzliche Vorschriften: Inventarpflicht"></a>Gesetzliche Vorschriften: Inventarpflicht</h4><p>Ausgangspunkt der Bilanz ist das Inventar § 240 HGB: </p>
-<ul>
-<li>Der Kaufmann hat „seine Grundstücke, seine Forderungen und Schulden, den Betrag seines baren Geldes sowie seine sonstigen Vermögensgegenstände genau zu verzeichnen“ sowie „den Wert der einzelnen Vermögensgegenstände und Schulden anzugeben“. </li>
-<li>unabhängig von der Buchführung zu erstellendes Verzeichnis unter Angabe von Art, Menge und Wert </li>
-<li><strong>Verzeichnis</strong> aller <strong>Vermögensgegenstände</strong> und <strong>Schulden</strong> nach  Art, Menge und Wert</li>
-<li>zu Beginn des Handelsgewerbes und am Ende eines jeden Geschäftsjahres</li>
-</ul>
-<h4 id="Sinn-und-Zweck-der-Inventarpflicht"><a href="#Sinn-und-Zweck-der-Inventarpflicht" class="headerlink" title="Sinn und Zweck der Inventarpflicht"></a>Sinn und Zweck der Inventarpflicht</h4><ul>
-<li>Vermögensfeststellung </li>
-<li>Dokumentationsinstrument </li>
-<li>primärer Zweck: Sicherungs- und Überwachungsfunktion: erschwert bei Konkurslage, Vermögensgegenstände zu entfernen und fiktive Schulden auszuweisen </li>
-<li>zum Schutz der Gläubiger und zu Kontrollzwecken </li>
-<li>Grundlage für die Gründungsbilanz (vor Beginn Handelsgewerbe) </li>
-</ul>
-<h3 id="3-1-3-Aufbau-des-Inventars"><a href="#3-1-3-Aufbau-des-Inventars" class="headerlink" title="3.1.3 Aufbau des Inventars"></a>3.1.3 Aufbau des Inventars</h3><p>keine gesetzliche Regelung; Praxis: <strong>3-stufiger Aufbau in Listenform</strong> anhand Grundgliederung der Bilanz</p>
-<h4 id="1-Teil-Vermogen"><a href="#1-Teil-Vermogen" class="headerlink" title="1. Teil: Vermögen"></a>1. Teil: Vermögen</h4><p><strong>Anordnung</strong>: steigende <strong>Liquidierbarkeit</strong> 变现力</p>
-<p><strong>Unterteilung</strong>: Summe Vermögen</p>
-<ul>
-<li><strong>Anlagevermögen</strong> 固定资产 (soll dem Unternehmen langfristig dienen) </li>
-<li><strong>Umlaufvermögen</strong> 流动资产 (ist dazu bestimmt, verbraucht oder veräußert zu werden) </li>
-</ul>
-<h4 id="2-Teil-Schulden"><a href="#2-Teil-Schulden" class="headerlink" title="2. Teil: Schulden"></a>2. Teil: Schulden</h4><p><strong>Anordnung</strong>: <strong>Fristigkeit</strong>/steigende Dringlichkeit der Rückzahlung</p>
-<p><strong>Unterteilung</strong>: Summe Schulden</p>
-<ul>
-<li>Langfristige Verbindlichkeiten </li>
-<li>Kurzfristige Verbindlichkeiten </li>
-</ul>
-<h4 id="3-Teil-Eigenkapital-Reinvermogen"><a href="#3-Teil-Eigenkapital-Reinvermogen" class="headerlink" title="3. Teil: Eigenkapital/Reinvermögen"></a>3. Teil: Eigenkapital/Reinvermögen</h4><p>Saldogröße (1 – 2): <strong>Eigenkapital/ Reinvermögen = Summe Vermögen - Summe Schulden </strong></p>
-<p><img src="https://raw.githubusercontent.com/Liangda-w/images/master/Inventar.png" alt=""></p>
-<h2 id="3-2-Bilanz"><a href="#3-2-Bilanz" class="headerlink" title="3.2 Bilanz"></a>3.2 Bilanz</h2><p>Es besteht die gesetzliche Verpflichtung jährlich eine Bilanz zu erstellen:</p>
-<ul>
-<li><strong>Gegenüberstellung von Vermögen und Schulden</strong> nach Art und Wert </li>
-<li>Zusammenfassung der einzelnen Inventarpositionen zu Bilanzposten und Gegenüberstellung</li>
-</ul>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>Unterschiede</th>
-<th>Bilanz</th>
-<th>Inventar</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Form</strong></td>
-<td>Konto</td>
-<td>Staffel List</td>
-</tr>
-<tr>
-<td><strong>Angegebenen Größen</strong></td>
-<td>Wert</td>
-<td>Wert + Menge</td>
-</tr>
-<tr>
-<td><strong>Umfang</strong></td>
-<td>zusammenfassend</td>
-<td>ausführlich</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><strong>Bilanzgleichung</strong> </p>
-<ul>
-<li><strong>Aktiva = Passiva</strong> </li>
-<li>Im Regelfall: <strong>Vermögen = Eigenkapital + Schulden</strong></li>
-<li>Bei <strong>Vermögen &lt; Schulden → Überschuldung / Konkurs</strong></li>
-</ul>
-<p><strong>Bilanz → Zeitpunktrechnung</strong>, Stichtagsbezogen auf das Ende des Geschäftsjahres. </p>
-<p><strong>GuV → Zeitraumrechung</strong>, weil Gegenüberstellung von Aufwendungen und Erträgen der letzten Abrechnungsperiode</p>
-<h3 id="3-2-1-Aktiva-Vermogen"><a href="#3-2-1-Aktiva-Vermogen" class="headerlink" title="3.2.1 Aktiva (Vermögen)"></a>3.2.1 Aktiva (Vermögen)</h3><p><strong>Verwendung</strong> der zur Verfügung stehenden finanziellen Mittel (Investition): </p>
-<ul>
-<li><p><strong>Anlagevermögen</strong> (AV)</p>
-<ul>
-<li>Immaterielle Vermögensgegenstände (Bsp.: Lizenzen, Patente) </li>
-<li><p>Sachanlagen </p>
-<ol>
-<li>Grundstücke und Gebäude (GuG) </li>
-<li>Technische Anlagen und Maschinen </li>
-<li>Andere Anlagen, betriebs- und Geschäftsausstattung (BGA)</li>
-</ol>
-</li>
-<li><p>Finanzanlagen (Bsp.: Wertpapiere des AV) </p>
-</li>
-</ul>
-</li>
-<li><p><strong>Umlaufvermögen</strong></p>
-<ul>
-<li>Vorräte 存货<ol>
-<li>Roh- Hilfs- und Betriebsstoffe </li>
-<li>Unfertige Erzeugnisse/Leistungen </li>
-<li>Fertige Erzeugnisse, Waren</li>
-</ol>
-</li>
-<li>Forderungen und sonstige Vermögensgegenstände </li>
-<li>Wertpapiere</li>
-<li>Kassenbestände, Bankguthaben</li>
-</ul>
-</li>
-<li><p>Rechnungsabgrenzungsposten</p>
-</li>
-</ul>
-<h3 id="3-2-2-Passiva-Kapital"><a href="#3-2-2-Passiva-Kapital" class="headerlink" title="3.2.2 Passiva (Kapital)"></a>3.2.2 Passiva (Kapital)</h3><p><strong>Herkunft</strong> der finanziellen Mittel (Finanzierung): EK + FK</p>
-<ul>
-<li><strong>Eigenkapital</strong>: Normalerweise ist im Mittelstand die <strong>Eigenkapitalquote</strong> (EK/Gesamtkapital) ca. <strong>20%</strong></li>
-<li>Rückstellungen 准备金</li>
-<li><strong>Verbindlichkeiten</strong> 债务 <ul>
-<li>Langfristige Verbindlichkeiten</li>
-<li>Kurzfristige Verbindlichkeiten </li>
-</ul>
-</li>
-<li>Rechnungsabgrenzungsposten</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/14/GeR-0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="大达哒 Bright">
-      <meta itemprop="description" content="书写是更好的思考, 讨论是绝佳的反思">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bright's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/14/GeR-0/" class="post-title-link" itemprop="url">Grundlagen des externes Rechnungswesens 0 Einführung</a>
-        </h2>
-
-        <div class="post-meta">
-
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-14 10:00:00" itemprop="dateCreated datePublished" datetime="2020-08-14T10:00:00+02:00">2020-08-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-23 12:14:01" itemprop="dateModified" datetime="2020-08-23T12:14:01+02:00">2020-08-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/GeR/" itemprop="url" rel="index"><span itemprop="name">GeR</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/08/14/GeR-0/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/14/GeR-0/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.4k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>[TOC]</p>
-<h2 id="1-Rechenschaft-Dokumentation-→-Jahresabschluss-年度账目"><a href="#1-Rechenschaft-Dokumentation-→-Jahresabschluss-年度账目" class="headerlink" title="1. Rechenschaft (Dokumentation) → Jahresabschluss 年度账目"></a>1. Rechenschaft (Dokumentation) → Jahresabschluss 年度账目</h2><p>Überblick über die <strong>Rechnungslegungszwecke</strong>: </p>
-<h3 id="1-1-Vorrangige-Gewinnanspruchsermittlung"><a href="#1-1-Vorrangige-Gewinnanspruchsermittlung" class="headerlink" title="1.1 Vorrangige Gewinnanspruchsermittlung"></a>1.1 Vorrangige Gewinnanspruchsermittlung</h3><h4 id="1-1-1-Reinvermogen-净资产"><a href="#1-1-1-Reinvermogen-净资产" class="headerlink" title="1.1.1 Reinvermögen 净资产"></a>1.1.1 Reinvermögen 净资产</h4><p>Erfassung und Bewertung einzelner Elemente des <strong>Reinvermögens</strong> am Anfang und Ende des Geschäftsjahr (GJ)</p>
-<p>→  <strong>Bilanz 收支结算，损益清算</strong>: eine Aufstellung, in der man die Einnahmen und Ausgaben einer Firma miteinander vergleicht</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  Zahlungsmittel 支付手段 <span class="comment">// Bargeld, Schecks...</span></span><br><span class="line">+ Forderungen 要涨，索款 <span class="comment">// der Anspruch auf Geld, das man für gelieferted Waren oder 						   erbrachte Leistungen von jmd bekommen soll</span></span><br><span class="line">+ Sachvermögen 有形资产，实物资产 <span class="comment">// Eigentum an beweglichen Sachen und deren Zubehör, an 								   Immobilien (Wohn- oder Gewerbeimmobilien, 										  Grundstücken, grundstücksgleichen Rechten), an nicht 									 börsennotierten Unternehmensbeteiligungen, an 										  Produktionsmitteln oder Rohstoffen und an 										  Schutzrechten (Patente, Lizenzen).</span></span><br><span class="line">– Verbindlichkeiten 债务</span><br><span class="line">= Reinvermögen (Nettovermögen/Eigenkapital)</span><br></pre></td></tr></table></figure>
-<h4 id="1-1-2-Jahresuberschuss"><a href="#1-1-2-Jahresuberschuss" class="headerlink" title="1.1.2 Jahresüberschuss"></a>1.1.2 Jahresüberschuss</h4><p>Erfassung und Bewertung der <strong>Aufwendungen und Erträge</strong> während des GJ </p>
-<p>→  <strong>Gewinn- und Verlustrechnung</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  Reinvermögen am Ende des GJ </span><br><span class="line">– Reinvermögen am Anfang des GJ </span><br><span class="line">= Veränderung des Reinvermögens </span><br><span class="line"><span class="comment">//Zunahme: Ertrag </span></span><br><span class="line"><span class="comment">//Abnahme: Aufwand</span></span><br></pre></td></tr></table></figure>
-<p><strong>Saldo</strong> 结余，差额</p>
-<ul>
-<li><strong>Positiv: Gewinn/Jahresüberschuss</strong> </li>
-<li><strong>Negativ: Verlust/Jahresfehlbetrag</strong></li>
-</ul>
-<h4 id="1-1-3-Bemessung-von-Ausschuttungen-股利"><a href="#1-1-3-Bemessung-von-Ausschuttungen-股利" class="headerlink" title="1.1.3 Bemessung von Ausschüttungen 股利"></a>1.1.3 Bemessung von Ausschüttungen 股利</h4><ul>
-<li>Jahresüberschuss ist Bezugsgröße für Ausschüttungen (z.B Dividende an Aktionär)</li>
-<li>Keine Ausschüttung von Substanz 储备物资 (<strong>Ausschüttungssperrfunktion</strong>: die vertragliche oder gesetzliche Begrenzung der Gewinnausschüttungen an die Gesellschafter.)</li>
-<li>Schutzbedürfnis Externer</li>
-<li>Beachtung des <strong>Vorsichtsprinzips</strong>:  im deutschen Rechnungswesen der Grundsatz verstanden, wonach bei der Bilanzierung alle Risiken und Verluste angemessen zu berücksichtigen sind</li>
-</ul>
-<h4 id="1-1-4-Ausgangsgrose-fur-Bemessung-der-Ertragsteuern-收益税"><a href="#1-1-4-Ausgangsgrose-fur-Bemessung-der-Ertragsteuern-收益税" class="headerlink" title="1.1.4 Ausgangsgröße für Bemessung der Ertragsteuern 收益税"></a>1.1.4 Ausgangsgröße für Bemessung der Ertragsteuern 收益税</h4><ul>
-<li>relevant für: Steuern vom Einkommen und Ertrag bei Gewerbebetrieben 工商企业<ul>
-<li>Körperschaftsteuer (KSt) 公司所得税</li>
-<li>Einkommensteuer (ESt) 所得税</li>
-<li>Gewerbesteuer (GewSt) 工商税，营业许可税</li>
-</ul>
-</li>
-</ul>
-<h3 id="1-2-Subsidiare-辅助-Informationsvermittlung"><a href="#1-2-Subsidiare-辅助-Informationsvermittlung" class="headerlink" title="1.2 Subsidiäre 辅助 Informationsvermittlung"></a>1.2 Subsidiäre 辅助 Informationsvermittlung</h3><p>Der Jahresabschluss soll aktuelle und potentielle (Eigen- und Fremd-) <strong>Kapitalgeber</strong> in die Lage versetzen, Entscheidungen über die Kapitalvergabe zu treffen, indem er über die Investitionen der Unternehmung informiert. Darüber hinaus übernimmt der Jahresabschluss zahlreiche <strong>Selbstinformationsaufgaben</strong>.</p>
-<h4 id="1-2-1-Externe-Adressaten-Information-Dritter"><a href="#1-2-1-Externe-Adressaten-Information-Dritter" class="headerlink" title="1.2.1 Externe Adressaten (Information Dritter)"></a>1.2.1 Externe Adressaten (Information Dritter)</h4><ul>
-<li>Gläubiger (Fremdkapitalgeber) 债权人</li>
-<li>Aktionäre (Anteilseigner) 股东</li>
-<li>Analysten, Kunden, Lieferanten, Arbeitnehmer, Gewerkschaften </li>
-<li>Fiskus 国家财政税务机关，国库</li>
-<li>Wirtschaftspresse, Öffentlichkeit</li>
-</ul>
-<h4 id="1-2-2-Interne-Adressaten-Selbstinformationsaufgabe"><a href="#1-2-2-Interne-Adressaten-Selbstinformationsaufgabe" class="headerlink" title="1.2.2 Interne Adressaten (Selbstinformationsaufgabe)"></a>1.2.2 Interne Adressaten (Selbstinformationsaufgabe)</h4><ul>
-<li>Unternehmensleitung (Vorstand, Geschäftsführung)</li>
-<li>Kontrollgremien (Aufsichtsrat, Beirat) 董事会，咨询委员会</li>
-</ul>
-
       
     </div>
 
@@ -1312,130 +861,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/10/offer-10-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="大达哒 Bright">
-      <meta itemprop="description" content="书写是更好的思考, 讨论是绝佳的反思">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bright's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/10/offer-10-1/" class="post-title-link" itemprop="url">剑指offer 10-1： 斐波那契数列 Fibonacci Number (Leetcode 509)</a>
-        </h2>
-
-        <div class="post-meta">
-
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-10 10:00:00" itemprop="dateCreated datePublished" datetime="2020-08-10T10:00:00+02:00">2020-08-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-22 13:21:16" itemprop="dateModified" datetime="2020-08-22T13:21:16+02:00">2020-08-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%91%E6%8C%87offer/" itemprop="url" rel="index"><span itemprop="name">剑指offer</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%91%E6%8C%87offer/simple/" itemprop="url" rel="index"><span itemprop="name">simple</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/08/10/offer-10-1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/10/offer-10-1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.9k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a><strong>Description</strong></h2><p>Difficulty: <strong>Simple</strong></p>
-<blockquote>
-<p>The <strong>Fibonacci numbers</strong>, commonly denoted <code>F(n)</code> form a sequence, called the <strong>Fibonacci sequence</strong>, such that each number is the sum of the two preceding ones, starting from <code>0</code> and <code>1</code>. That is,</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">F(<span class="number">0</span>) = <span class="number">0</span>,   F(<span class="number">1</span>) = <span class="number">1</span></span><br><span class="line">F(N) = F(N - <span class="number">1</span>) + F(N - <span class="number">2</span>), <span class="keyword">for</span> N &gt; <span class="number">1</span>.</span><br></pre></td></tr></table></figure>
-<p>Given <code>N</code>, calculate <code>F(N)</code>.</p>
-<p>答案需要<strong>取模</strong> 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。</p>
-<p>Example:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: <span class="number">4</span></span><br><span class="line">&gt;Output: <span class="number">3</span></span><br><span class="line">&gt;Explanation: F(<span class="number">4</span>) = F(<span class="number">3</span>) + F(<span class="number">2</span>) = <span class="number">2</span> + <span class="number">1</span> = <span class="number">3</span>.</span><br></pre></td></tr></table></figure>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/10/offer-10-1/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1507,14 +932,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1564,12 +989,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">189k</span>
+    <span title="Symbols count total">197k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">2:52</span>
+    <span title="Reading time total">2:59</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
