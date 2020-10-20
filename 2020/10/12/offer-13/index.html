@@ -29,7 +29,7 @@
 <meta property="og:description" content="DescriptionDifficulty: Medium  地上有一个m行n列的方格，从坐标 [0,0] 到坐标 [m-1,n-1] 。一个机器人从坐标 [0, 0] 的格子开始移动，它每次可以向左、右、上、下移动一格（不能移动到方格外），也不能进入行坐标和列坐标的数位之和大于k的格子。例如，当k为18时，机器人能够进入方格 [35, 37] ，因为3+5+3+7&#x3D;18。但它不能进入方格 [35">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-10-12T08:00:00.000Z">
-<meta property="article:modified_time" content="2020-10-13T09:15:36.257Z">
+<meta property="article:modified_time" content="2020-10-13T10:01:07.585Z">
 <meta property="article:author" content="大达哒 Bright">
 <meta property="article:tag" content="剑指offer">
 <meta name="twitter:card" content="summary">
@@ -200,7 +200,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-13 11:15:36" itemprop="dateModified" datetime="2020-10-13T11:15:36+02:00">2020-10-13</time>
+                <time title="Modified: 2020-10-13 12:01:07" itemprop="dateModified" datetime="2020-10-13T12:01:07+02:00">2020-10-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -243,7 +243,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.9k</span>
+              <span>3.1k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -274,9 +274,67 @@
 <h2 id="Solution-1：-Brute-force-O-n-m"><a href="#Solution-1：-Brute-force-O-n-m" class="headerlink" title="Solution - 1：  Brute-force O(n*m)"></a><strong>Solution - 1： </strong> Brute-force O(n*m)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">movingCount</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[][] matrix = <span class="keyword">new</span> <span class="keyword">int</span>[m][n]; <span class="comment">// matrix if the positon is already visited</span></span><br><span class="line">        matrix[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>; <span class="comment">// init for start point (0,0)</span></span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;n; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(i==<span class="number">0</span> &amp;&amp; j==<span class="number">0</span>) <span class="keyword">continue</span>; <span class="comment">//skip the (0,0)  </span></span><br><span class="line">                <span class="keyword">if</span>(sum(i, j) &lt;= k)&#123; </span><br><span class="line">                    <span class="comment">// if the position is reachable</span></span><br><span class="line">                    <span class="keyword">if</span>((i&gt;=<span class="number">1</span> &amp;&amp; matrix[i-<span class="number">1</span>][j]==<span class="number">1</span>) || (i&lt;m-<span class="number">1</span> &amp;&amp; matrix[i+<span class="number">1</span>][j]==<span class="number">1</span>) </span><br><span class="line">                    || (j&gt;=<span class="number">1</span> &amp;&amp; matrix[i][j-<span class="number">1</span>]==<span class="number">1</span>) || (j&lt;n-<span class="number">1</span> &amp;&amp; matrix[i][j+<span class="number">1</span>]==<span class="number">1</span>))&#123;</span><br><span class="line">                        matrix[i][j] = <span class="number">1</span>;</span><br><span class="line">                        count++;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">sum</span> <span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123; <span class="comment">// calculate the sum of the digit of the coordinates</span></span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(x &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            sum += x%<span class="number">10</span>;</span><br><span class="line">            x /= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(y &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            sum += y%<span class="number">10</span>;</span><br><span class="line">            y /= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;               </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>时间复杂度：O(n*m)</strong><br><strong>空间复杂度：O(n*m)</strong> 新建数组matrix的维度为 nm</p>
 <h2 id="Solution-2：-BFS-O-n-m"><a href="#Solution-2：-BFS-O-n-m" class="headerlink" title="Solution - 2：  BFS O(n*m)"></a><strong>Solution - 2： </strong> BFS O(n*m)</h2><p>本质上还是个DFS/BFS的问题</p>
+<p>关于<strong>Queue，FIFO</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Throw exception</th>
+<th>Return false</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Insert</td>
+<td>add(e)</td>
+<td>offer(e)</td>
+</tr>
+<tr>
+<td>Remove</td>
+<td>remove()</td>
+<td>poll()</td>
+</tr>
+<tr>
+<td>Examine</td>
+<td>element()</td>
+<td>peek()</td>
+</tr>
+</tbody>
+</table>
+</div>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">movingCount</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//临时变量visited记录格子是否被访问过</span></span><br><span class="line">    <span class="keyword">boolean</span>[][] visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[m][n];</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//创建一个队列，保存的是访问到的格子坐标，是个二维数组</span></span><br><span class="line">    Queue&lt;<span class="keyword">int</span>[]&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="comment">//从左上角坐标[0,0]点开始访问，add方法表示把坐标</span></span><br><span class="line">    <span class="comment">// 点加入到队列的队尾</span></span><br><span class="line">    queue.add(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">0</span>, <span class="number">0</span>&#125;);</span><br><span class="line">    <span class="keyword">while</span> (queue.size() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">//这里的poll()函数表示的是移除队列头部元素，因为队列</span></span><br><span class="line">        <span class="comment">//是先进先出，从尾部添加，从头部移除 =&gt; BFS</span></span><br><span class="line">        <span class="keyword">int</span>[] x = queue.poll();</span><br><span class="line">        <span class="keyword">int</span> i = x[<span class="number">0</span>], j = x[<span class="number">1</span>];</span><br><span class="line">        <span class="comment">//i &gt;= m || j &gt;= n是边界条件的判断，k &lt; sum(i, j)判断当前格子坐标是否</span></span><br><span class="line">        <span class="comment">// 满足条件，visited[i][j]判断这个格子是否被访问过</span></span><br><span class="line">        <span class="keyword">if</span> (i &gt;= m || j &gt;= n || k &lt; sum(i, j) || visited[i][j]) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="comment">//标注这个格子被访问过</span></span><br><span class="line">        visited[i][j] = <span class="keyword">true</span>;</span><br><span class="line">        res++;</span><br><span class="line">        <span class="comment">//把当前格子右边格子的坐标加入到队列中</span></span><br><span class="line">        queue.add(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;i + <span class="number">1</span>, j&#125;);</span><br><span class="line">        <span class="comment">//把当前格子下边格子的坐标加入到队列中</span></span><br><span class="line">        queue.add(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;i, j + <span class="number">1</span>&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (i != <span class="number">0</span>) &#123;</span><br><span class="line">        sum += i % <span class="number">10</span>;</span><br><span class="line">        i /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (j != <span class="number">0</span>) &#123;</span><br><span class="line">        sum += j % <span class="number">10</span>;</span><br><span class="line">        j /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>时间复杂度：O(n*m)</strong> 最差情况下，机器人遍历矩阵所有单元<br><strong>空间复杂度：O(n*m)</strong> 最差情况下， <code>visited</code> 内存储矩阵所有单元格的索引</p>
 <h2 id="Solution-3：-DFS-O-n-m"><a href="#Solution-3：-DFS-O-n-m" class="headerlink" title="Solution - 3：  DFS O(n*m)"></a><strong>Solution - 3： </strong> DFS O(n*m)</h2><p>本质上还是个DFS/BFS的问题</p>
+<p>关于<strong>Queue，FIFO</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Throw exception</th>
+<th>Return false</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Insert</td>
+<td>add(e)</td>
+<td>offer(e)</td>
+</tr>
+<tr>
+<td>Remove</td>
+<td>remove()</td>
+<td>poll()</td>
+</tr>
+<tr>
+<td>Examine</td>
+<td>element()</td>
+<td>peek()</td>
+</tr>
+</tbody>
+</table>
+</div>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">movingCount</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//临时变量visited记录格子是否被访问过</span></span><br><span class="line">    <span class="keyword">boolean</span>[][] visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[m][n];</span><br><span class="line">    <span class="keyword">return</span> dfs(<span class="number">0</span>, <span class="number">0</span>, m, n, k, visited);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> k, <span class="keyword">boolean</span>[][] visited)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//i &gt;= m || j &gt;= n是边界条件的判断，k &lt; sum(i, j)判断当前格子坐标是否</span></span><br><span class="line">    <span class="comment">// 满足条件，visited[i][j]判断这个格子是否被访问过</span></span><br><span class="line">    <span class="keyword">if</span> (i &gt;= m || j &gt;= n || k &lt; sum(i, j) || visited[i][j])</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//标注这个格子被访问过</span></span><br><span class="line">    visited[i][j] = <span class="keyword">true</span>;</span><br><span class="line">    <span class="comment">//沿着当前格子的右边和下边继续访问</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> + dfs(i + <span class="number">1</span>, j, m, n, k, visited) + dfs(i, j + <span class="number">1</span>, m, n, k, visited);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (i != <span class="number">0</span>) &#123;</span><br><span class="line">        sum += i % <span class="number">10</span>;</span><br><span class="line">        i /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (j != <span class="number">0</span>) &#123;</span><br><span class="line">        sum += j % <span class="number">10</span>;</span><br><span class="line">        j /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>时间复杂度：O(n*m)</strong> 最差情况下，机器人遍历矩阵所有单元<br><strong>空间复杂度：O(n*m)</strong> 最差情况下， <code>visited</code> 内存储矩阵所有单元格的索引</p>
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ul>
@@ -332,7 +390,10 @@
     <a href="/2020/09/07/Generate%20Synthetic%20Images%20with%20DCGANs%20in%20Keras/" rel="prev" title="Generate Synthetic Images with DCGANs in Keras">
       <i class="fa fa-chevron-left"></i> Generate Synthetic Images with DCGANs in Keras
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/10/17/GAN%20(1.1)/" rel="next" title="Build Basic Generative Adversarial Networks (1.1) Intro to GANs">
+      Build Basic Generative Adversarial Networks (1.1) Intro to GANs <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -408,14 +469,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -465,12 +526,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">266k</span>
+    <span title="Symbols count total">341k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">4:02</span>
+    <span title="Reading time total">5:10</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
