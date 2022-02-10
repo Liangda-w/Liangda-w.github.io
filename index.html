@@ -282,6 +282,463 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/10/Leetcode-1143/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="大达哒 Bright">
+      <meta itemprop="description" content="书写是更好的思考, 讨论是绝佳的反思">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bright's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/10/Leetcode-1143/" class="post-title-link" itemprop="url">Leetcode 1143： Longest Common Subsequence</a>
+        </h2>
+
+        <div class="post-meta">
+
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-02-10 10:00:00 / Modified: 16:22:19" itemprop="dateCreated datePublished" datetime="2022-02-10T10:00:00+01:00">2022-02-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Leetcode/Medium/" itemprop="url" rel="index"><span itemprop="name">Medium</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2022/02/10/Leetcode-1143/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/10/Leetcode-1143/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>4k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>4 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a><strong>Description</strong></h2><p>Difficulty: <strong>Medium</strong></p>
+<blockquote>
+<p>Given two strings <code>text1</code> and <code>text2</code>, return <em>the length of their longest <strong>common subsequence</strong>.</em> If there is no <strong>common subsequence</strong>, return <code>0</code>.</p>
+<p>A <strong>subsequence</strong> of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters.</p>
+<ul>
+<li>For example, <code>&quot;ace&quot;</code> is a subsequence of <code>&quot;abcde&quot;</code>.</li>
+</ul>
+<p>A <strong>common subsequence</strong> of two strings is a subsequence that is common to both strings.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: text1 = <span class="string">"abcde"</span>, text2 = <span class="string">"ace"</span> </span><br><span class="line">   Output: <span class="number">3</span>  </span><br><span class="line">   Explanation: The longest common subsequence is <span class="string">"ace"</span> and its length is <span class="number">3</span>.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: text1 = <span class="string">"abc"</span>, text2 = <span class="string">"abc"</span></span><br><span class="line">&gt;Output: <span class="number">3</span></span><br><span class="line">Explanation: The longest common subsequence is <span class="string">"abc"</span> and its length is <span class="number">3</span>.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   Input: text1 = <span class="string">"abc"</span>, text2 = <span class="string">"def"</span></span><br><span class="line">   Output: <span class="number">0</span></span><br><span class="line">Explanation: There is no such common subsequence, so the result is <span class="number">0</span>.</span><br></pre></td></tr></table></figure>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>1 &lt;= text1.length, text2.length &lt;= 1000</code></li>
+<li><code>text1</code> and <code>text2</code> consist of only lowercase English characters.</li>
+</ul>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/02/10/Leetcode-1143/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/17/Code%20Jam%20IO%202014-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="大达哒 Bright">
+      <meta itemprop="description" content="书写是更好的思考, 讨论是绝佳的反思">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bright's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/17/Code%20Jam%20IO%202014-2/" class="post-title-link" itemprop="url">Code Jam IO 2014-2</a>
+        </h2>
+
+        <div class="post-meta">
+
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-04-17 14:33:09 / Modified: 14:47:48" itemprop="dateCreated datePublished" datetime="2021-04-17T14:33:09+02:00">2021-04-17</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/04/17/Code%20Jam%20IO%202014-2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/17/Code%20Jam%20IO%202014-2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>4k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>4 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p><a href="https://codingcompetitions.withgoogle.com/codejamio/round/0000000000050ed0/0000000000050ed1">Code Jam to I/O for Woman 2014 (2) Zathras (16 pts, 24 pts)</a></p>
+<blockquote>
+<h4 id="Problem-Simplified"><a href="#Problem-Simplified" class="headerlink" title="Problem (Simplified)"></a>Problem (Simplified)</h4><p>It is year 2025 on planet Zathras — a world populated exclusively by semi-sentient robots called Zathrinians. There are two kinds of Zathrinians: acrobots and bouncoids. Once a year, the Great Mind makes its Great Decision for that year, and chooses how the Zathrinians will reproduce and be decommissioned. When it’s making the Great Decision, it takes into account two Eternal Parameters: <strong>α</strong> and <strong>β</strong>. These parameters, being Eternal, do not change from year to year.</p>
+<p><strong>Reproduction:</strong> If there are <strong>A</strong> acrobots and <strong>B</strong> bouncoids when the Great Mind makes the Great Decision, the Great Mind will create K = min(<strong>A</strong>, <strong>B</strong>) reproductive pairs by pairing together an acrobot and a bouncoid. Any remaining robots will be unpaired. The next day, 2% of those K couples (rounded down) will produce one baby Zathrinian each.</p>
+<p>Out of all the baby Zathrinians produced, <strong>α</strong>% (rounded down) are acrobots, and <strong>β</strong>% (rounded down) are bouncoids. The remaining baby Zathrinians are split evenly between acrobots and bouncoids; if there’s an odd number, the extra baby becomes a bouncoid.</p>
+<p><strong>Decommissioning:</strong> When the Great Mind makes its Great Decision, 1% of acrobots (rounded down) and 1% of bouncoids (rounded down) are marked for decommissioning. Two days later, they will all be disassembled. Note that the 1% figure is calculated on the day of the Great Decision, before the new Zathrinians are born.</p>
+<p>After the Great Decision has been made (day 1), the reproduction has occurred (day 2), and the unlucky Zathrinians have been disassembled (day 3), the entire world continues to function in harmony until next year’s Great Decision takes place at the time scheduled in the Eternal Specification.</p>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><p>If we start with a population of 12345 acrobots and 12890 bouncoids, 123 acrobots and 128 bouncoids will be marked for decommissioning. The number of couples will be min(12345, 12890), which is 12345. This means that 246 offspring will be created that year. Let’s say that <strong>α</strong>=10 and <strong>β</strong>=13, so more bouncoids than Zathrinians are created each year. This means that 24 offspring will be acrobots (10% of 246, rounded down); 31 will be bouncoids (13% of 246, rounded down); and the remaining 191 will be split between 95 more acrobots and 96 more bouncoids.</p>
+<p>Overall, we started with 12345 acrobots and 12890 bouncoids. One day later, there will be 12464 acrobots and 13017 bouncoids. The next day, there will be 12341 acrobots and 12889 bouncoids. 99 years later, there will be 11993 acrobots and 12676 bouncoids. After a total of 5049 years, we will be down to only 3099 acrobots and 3199 bouncoids — a huge drop in total population size. After that, the populations will remain the same forever.</p>
+<p>Given the values of <strong>A</strong>, <strong>B</strong>, <strong>α</strong>, <strong>β</strong>, and <strong>Y</strong>, can you compute the acrobot and bouncoid population sizes at the end of <strong>Y</strong> years?</p>
+<h4 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h4><p>The first line of the input gives the number of test cases, <strong>T</strong>. <strong>T</strong> lines follow. Each line contains 5 integers: <strong>A</strong>, <strong>B</strong>, <strong>α</strong>, <strong>β</strong>, and <strong>Y</strong>.</p>
+<h4 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h4><p>For each test case, output one line containing “Case #x: AY BY”, where x is the test case number (starting from 1) and (AY, BY) are the populations of acrobots and bouncoids after <strong>Y</strong> years, respectively.</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/17/Code%20Jam%20IO%202014-2/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/17/Code%20Jam%20IO%202014-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="大达哒 Bright">
+      <meta itemprop="description" content="书写是更好的思考, 讨论是绝佳的反思">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bright's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/17/Code%20Jam%20IO%202014-1/" class="post-title-link" itemprop="url">Code Jam IO 2014-1</a>
+        </h2>
+
+        <div class="post-meta">
+
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-04-17 14:22:53 / Modified: 14:31:01" itemprop="dateCreated datePublished" datetime="2021-04-17T14:22:53+02:00">2021-04-17</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/04/17/Code%20Jam%20IO%202014-1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/17/Code%20Jam%20IO%202014-1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.8k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p><a href="https://codingcompetitions.withgoogle.com/codejamio/round/0000000000050ed0/0000000000050df2">Code Jam to I/O for Woman 2014 (1) Saturnalia (15 pts)</a></p>
+<blockquote>
+<h4 id="Problem-Simplified"><a href="#Problem-Simplified" class="headerlink" title="Problem (Simplified)"></a>Problem (Simplified)</h4><p>Caterina needs a computer program that reads a message and outputs it back, decorated with a box.</p>
+<h4 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h4><p>The first line of the input gives the number of test cases, <strong>T</strong>. <strong>T</strong> lines follow. Each line contains a text message.</p>
+<h4 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h4><p>For each test case, output four lines. The first one should contain “Case #x:”, where x is the test case number (starting from 1). The next 3 lines should contain the original message surrounded by a box of ‘+’, ‘-‘, and ‘|’ characters, with a space character added on each side of the message. See examples below for the exact formatting requirements. Pay special attention to the spaces.</p>
+<h4 id="Sample"><a href="#Sample" class="headerlink" title="Sample"></a>Sample</h4><p>Input: </p>
+<figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span></span><br><span class="line">Merry Saturnalia, Giovanni!</span><br><span class="line">Equus, you're the best!</span><br><span class="line">&gt;Caballus, you try really hard!</span><br><span class="line">   </span><br><span class="line">&gt;w</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Case #1:</span><br><span class="line"><span class="code">+-----------------------------+</span></span><br><span class="line">&gt;| Merry Saturnalia, Giovanni! |</span><br><span class="line"><span class="code">+-----------------------------+</span></span><br><span class="line">&gt;Case #2:</span><br><span class="line"><span class="code">+-------------------------+</span></span><br><span class="line">| Equus, you're the best! |</span><br><span class="line"><span class="code">+-------------------------+</span></span><br><span class="line">Case #3:</span><br><span class="line"><span class="code">+--------------------------------+</span></span><br><span class="line">| Caballus, you try really hard! |</span><br><span class="line">&gt;<span class="code">+--------------------------------+</span></span><br><span class="line">Case #4:</span><br><span class="line">&gt;<span class="code">+-----+</span></span><br><span class="line">|     |</span><br><span class="line"><span class="code">+-----+</span></span><br><span class="line">Case #5:</span><br><span class="line"><span class="code">+---+</span></span><br><span class="line">| w |</span><br><span class="line"><span class="code">+---+</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/17/Code%20Jam%20IO%202014-1/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/16/Code%20Jam%20IO%202014-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="大达哒 Bright">
+      <meta itemprop="description" content="书写是更好的思考, 讨论是绝佳的反思">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bright's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/16/Code%20Jam%20IO%202014-3/" class="post-title-link" itemprop="url">Code Jam IO 2014-3</a>
+        </h2>
+
+        <div class="post-meta">
+
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-04-16 20:15:07 / Modified: 23:52:30" itemprop="dateCreated datePublished" datetime="2021-04-16T20:15:07+02:00">2021-04-16</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/04/16/Code%20Jam%20IO%202014-3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/16/Code%20Jam%20IO%202014-3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>8.5k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>8 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p><a href="https://codingcompetitions.withgoogle.com/codejamio/round/0000000000050ed0/0000000000050df3">Code Jam to I/O for Woman 2014 (3) Seating Chart (17 pts, 28 pts)</a></p>
+<blockquote>
+<h4 id="Problem-Simplified"><a href="#Problem-Simplified" class="headerlink" title="Problem (Simplified)"></a>Problem (Simplified)</h4><p>There are <strong>K</strong> round tables at the dinner, numbered 1 through <strong>K</strong>. It is important to have exactly the same number of people sitting at each table. If that is impossible (<strong>N</strong> is not divisible by <strong>K</strong>), then the table with the most people must have at most one more person sitting at it than the table with the fewest people.</p>
+<p>Each of the <strong>N</strong> people will be assigned a unique number between 0 and <strong>N</strong> - 1. What matters is who is sitting next to whom, and not exactly where they’re sitting. In other words, two arrangements, A and B, are considered different if there exists a pair of numbers, α and β, such that persons α and β are sitting next to each other at the same table in arrangement A, but they are not sitting next to each other in arrangement B.</p>
+<p>For example, if <strong>N</strong> is 5, and <strong>K</strong> is 2, we must have 3 people seated at one of the tables, and 2 people seated at the other table. Here is the list of all 10 of the possible arrangements:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>], [<span class="number">2</span>, <span class="number">4</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>], [<span class="number">2</span>, <span class="number">3</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">1</span>, <span class="number">4</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>], [<span class="number">1</span>, <span class="number">3</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="number">1</span>, <span class="number">2</span>]]</span><br><span class="line">[[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">0</span>, <span class="number">4</span>]]</span><br><span class="line">[[<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>], [<span class="number">0</span>, <span class="number">3</span>]]</span><br><span class="line">[[<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="number">0</span>, <span class="number">2</span>]]</span><br><span class="line">[[<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="number">0</span>, <span class="number">1</span>]]</span><br></pre></td></tr></table></figure>
+<p>All other arrangements are similar to one of the arrangements above and are not counted as different. In particular, all of the following arrangements are considered to be the same:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]]</span><br><span class="line">[[<span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span>], [<span class="number">3</span>, <span class="number">4</span>]]</span><br><span class="line">[[<span class="number">1</span>, <span class="number">2</span>, <span class="number">0</span>], [<span class="number">4</span>, <span class="number">3</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>], [<span class="number">3</span>, <span class="number">4</span>]]</span><br><span class="line">[[<span class="number">3</span>, <span class="number">4</span>], [<span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>]]</span><br></pre></td></tr></table></figure>
+<p>This is because the following pairs of people (and no other pairs) are sitting next to each other in each of these 5 arrangements:</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">0 </span><span class="keyword">and</span> <span class="number">1</span></span><br><span class="line"><span class="symbol">0 </span><span class="keyword">and</span> <span class="number">2</span></span><br><span class="line"><span class="symbol">1 </span><span class="keyword">and</span> <span class="number">2</span></span><br><span class="line"><span class="symbol">3 </span><span class="keyword">and</span> <span class="number">4</span></span><br></pre></td></tr></table></figure>
+<p>Another example is <strong>N</strong> = 5 and <strong>K</strong> = 3, which requires having two tables with two people each, and one table with a single person sitting at it. There are 15 possible arrangements in this case:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="number">0</span>, <span class="number">1</span>], [<span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">1</span>], [<span class="number">2</span>, <span class="number">4</span>], [<span class="number">3</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">1</span>], [<span class="number">3</span>, <span class="number">4</span>], [<span class="number">2</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">2</span>], [<span class="number">1</span>, <span class="number">3</span>], [<span class="number">4</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">2</span>], [<span class="number">1</span>, <span class="number">4</span>], [<span class="number">3</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>], [<span class="number">1</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">3</span>], [<span class="number">1</span>, <span class="number">2</span>], [<span class="number">4</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">3</span>], [<span class="number">1</span>, <span class="number">4</span>], [<span class="number">2</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">3</span>], [<span class="number">2</span>, <span class="number">4</span>], [<span class="number">1</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">4</span>], [<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">4</span>], [<span class="number">1</span>, <span class="number">3</span>], [<span class="number">2</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">4</span>], [<span class="number">2</span>, <span class="number">3</span>], [<span class="number">1</span>]]</span><br><span class="line">[[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>], [<span class="number">0</span>]]</span><br><span class="line">[[<span class="number">1</span>, <span class="number">3</span>], [<span class="number">2</span>, <span class="number">4</span>], [<span class="number">0</span>]]</span><br><span class="line">[[<span class="number">1</span>, <span class="number">4</span>], [<span class="number">2</span>, <span class="number">3</span>], [<span class="number">0</span>]]</span><br></pre></td></tr></table></figure>
+<p>In this final example, <strong>N</strong> = 5 and <strong>K</strong> = 1, which means that we only have a single table, seating all 5 guests. Here, the answer is 12:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">3</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">4</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">3</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">3</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">3</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>]]</span><br><span class="line">[[<span class="number">0</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">4</span>]]</span><br></pre></td></tr></table></figure>
+<h4 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h4><p>The first line of the input gives the number of test cases, <strong>T</strong>. <strong>T</strong> lines, each one containing two integers, <strong>N</strong> and <strong>K</strong>.</p>
+<h4 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h4><p>For each test case, output one line containing “Case #x: y”, where x is the test case number (starting from 1) and <strong>y is the number of different possible seating arrangements.</strong></p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/16/Code%20Jam%20IO%202014-3/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/07/AlgoExpert-River%20Sizes/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -647,7 +1104,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -715,7 +1172,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-count">64</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -728,7 +1185,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -763,7 +1220,7 @@
 <div class="copyright">
   
   &copy; 2020.06.17 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -772,12 +1229,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">419k</span>
+    <span title="Symbols count total">437k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">6:21</span>
+    <span title="Reading time total">6:37</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
